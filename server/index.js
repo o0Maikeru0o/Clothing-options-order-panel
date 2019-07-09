@@ -20,8 +20,8 @@ app.get('/api/items', (req, res) => {
 });
 
 app.get('/api/:id', (req, res) => {
-  let id = req.params.id
-  console.log(id);
+  let id = req.params.id;
+  // console.log(req.params);
   db.getSingleItem(id)
     .then((results) => {
       res.end(JSON.stringify(results));
