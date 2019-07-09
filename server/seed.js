@@ -70,11 +70,6 @@ const generateNewItem = id => ({
 // ////////////////////// Seed Database //////////////////////////////////
 /** ******************************************************************** */
 
-// for loop 100
-// item = generateNewItem(i)
-// send MySQL INSERT Query
-// INSERT INTO items (name, description, stock, fabric, care, features, sizes, colors) VALUES (item.name, item.description, etc..)
-
 const seed = () => {
   for (let i = 0; i <= 100; i++) {
     const item = generateNewItem(i);
@@ -105,4 +100,5 @@ seed();
 
 module.exports = {
   seed,
+  getNRandomElements,
 };
