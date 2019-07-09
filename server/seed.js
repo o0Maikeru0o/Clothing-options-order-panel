@@ -95,7 +95,7 @@ const seed = () => {
       colors: JSON.stringify(item.colors)
     }
 
-    db.query(q, post, (err, results) => {
+    db.connection.query(q, post, (err, results) => {
       if (err) {
         throw err;
       } else {
