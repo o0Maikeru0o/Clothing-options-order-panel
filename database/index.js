@@ -31,4 +31,22 @@ const getSingleItem = (id) => {
   });
 };
 
-module.exports = { connection, getAllItems, getSingleItem };
+const clearTable = () => {
+  const q = 'TRUNCATE TABLE items';
+  return new Promise((resolve, reject) => {
+    connection.query(q, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
+module.exports = {
+  connection,
+  getAllItems,
+  getSingleItem,
+  clearTable,
+};
