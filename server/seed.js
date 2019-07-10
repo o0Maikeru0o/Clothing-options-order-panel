@@ -71,29 +71,32 @@ const generateNewItem = id => ({
 /** ******************************************************************** */
 
 const seed = () => {
-  for (let i = 0; i <= 100; i++) {
-    const item = generateNewItem(i);
-    const q = 'INSERT INTO items SET ?';
-    const post = {
-      name: item.name,
-      description: item.description,
-      stock: item.stock,
-      fabric: item.fabric,
-      care: JSON.stringify(item.care),
-      designed_for: item.designedFor,
-      fit: item.fit,
-      sizes: JSON.stringify(item.sizes),
-      colors: JSON.stringify(item.colors),
-    };
+  return new Promise ((resolve, reject) => {
+    for (let i = 0; i < 100; i++) {
+      const item = generateNewItem(i);
+      const q = 'INSERT INTO items SET ?';
+      const post = {
+        name: item.name,
+        description: item.description,
+        stock: item.stock,
+        fabric: item.fabric,
+        care: JSON.stringify(item.care),
+        designed_for: item.designedFor,
+        fit: item.fit,
+        sizes: JSON.stringify(item.sizes),
+        colors: JSON.stringify(item.colors),
+      };
 
-    db.connection.query(q, post, (err, results) => {
-      if (err) {
-        throw err;
-      } else {
-        console.log(results);
-      }
-    });
-  }
+      db.connection.query(q, post, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    }
+  })
+
 };
 
 seed();
