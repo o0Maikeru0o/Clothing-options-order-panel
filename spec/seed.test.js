@@ -15,7 +15,6 @@ describe('seed script', () => {
   });
 
   afterAll(async () => {
-    await db.clearTable();
     await db.connection.end();
   });
 });
