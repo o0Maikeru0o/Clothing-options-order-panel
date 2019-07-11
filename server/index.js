@@ -4,7 +4,7 @@ const db = require('../database/index.js');
 const app = express();
 const PORT = 3002;
 
-app.use(express.static('./client/dist'));
+app.use('/:id', express.static('./client/dist'));
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
