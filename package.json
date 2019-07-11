@@ -24,6 +24,8 @@
     "babel": "^6.23.0",
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "mysql": "^2.17.1",
@@ -35,8 +37,10 @@
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
-    "enzyme": "^3.10.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.18.0",
@@ -48,6 +52,8 @@
     "webpack-cli": "^3.3.5"
   },
   "jest": {
-    "testEnvironment": "node"
+    "setupFilesAfterEnv": [
+      "<rootDir>client/setupTests.js"
+    ]
   }
 }
