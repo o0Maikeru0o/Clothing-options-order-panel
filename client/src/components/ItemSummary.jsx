@@ -11,7 +11,18 @@ class ItemSummary extends React.Component {
   }
 
   componentDidMount() {
-    this.getFirstItem();
+    this.getItemById(1);
+  }
+
+  getItemById(id) {
+    $.ajax({
+      url: `http://localhost:3002/api/${id}`,
+      method: 'GET',
+      success: (results) => {
+        this.setState({item: JSON.parse(results)});
+      },
+      error: () => console.log(`error sending GET to /api/${id} from client`)
+    })
   }
 
   getFirstItem() {
