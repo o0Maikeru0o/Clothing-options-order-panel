@@ -1,5 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
+import NameAndPrice from './NameAndPrice.jsx';
+import Description from './Description.jsx';
 
 class ItemSummary extends React.Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class ItemSummary extends React.Component {
   }
 
   componentDidMount() {
-    this.getItemById(1);
+    const id = window.location.pathname.substring(1)
+    this.getItemById(id);
   }
 
   getItemById(id) {
@@ -39,10 +42,16 @@ class ItemSummary extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Hello World</h1>
+        <NameAndPrice
+          name={this.state.item.length ? this.state.item[0].name : null}
+          price={this.state.item.length ? this.state.item[0].price : null}
+        />
+        <Description
+          description={this.state.item.length ? this.state.item[0].description : null}
+        />
       </div>
     )
   }
-}
+};
 
 export default ItemSummary;
