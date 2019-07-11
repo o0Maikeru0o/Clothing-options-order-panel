@@ -1,7 +1,7 @@
 const db = require('../database/index.js');
 const seed = require('../server/seed.js');
 
-describe('seed script', () => {
+xdescribe('seed script', () => {
   let items;
 
   beforeAll(async () => {
@@ -15,6 +15,7 @@ describe('seed script', () => {
   });
 
   afterAll(async () => {
+    await db.clearTable();
     await db.connection.end();
   });
 });
