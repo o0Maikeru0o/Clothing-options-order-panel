@@ -15,6 +15,6 @@ CREATE TABLE items (
   fit varchar(280),
   sizes varchar(280),
   colors varchar(280),
-  price int(5),
+  price varchar(15),
   PRIMARY KEY (ID)
 );
