@@ -64,7 +64,7 @@ const generateNewItem = id => ({
   fit: fit[getRandomIndex(fit.length)],
   sizes: getNRandomElements(sizes, 3),
   colors: getNRandomElements(colors, 3),
-  price: getRandomIndex(1000),
+  price: `$${getRandomIndex(1000)}.00`,
 });
 
 /** ********************************************************************* */
