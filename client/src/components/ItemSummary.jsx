@@ -9,7 +9,6 @@ class ItemSummary extends React.Component {
     this.state = {
       item: [],
     };
-    this.getFirstItem = this.getFirstItem.bind(this);
   }
 
   componentDidMount() {
@@ -25,17 +24,6 @@ class ItemSummary extends React.Component {
         this.setState({item: JSON.parse(results)});
       },
       error: () => console.log(`error sending GET to /api/${id} from client`)
-    })
-  }
-
-  getFirstItem() {
-    $.ajax({
-      url: 'http://localhost:3002/api/1',
-      method: 'GET',
-      success: (results) => {
-        this.setState({item: JSON.parse(results)});
-      },
-      error: () => console.log('error sending GET to /api/1 from client')
     })
   }
 
