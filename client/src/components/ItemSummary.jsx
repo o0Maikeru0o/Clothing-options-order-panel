@@ -14,7 +14,7 @@ class ItemSummary extends React.Component {
     this.state = {
       item: [],
       sizeListOpen: false,
-      selectedColor: '',
+      selectedColor: 'select a color',
     };
     this.toggleSizeList = this.toggleSizeList.bind(this);
     this.selectColor = this.selectColor.bind(this);
@@ -58,6 +58,7 @@ class ItemSummary extends React.Component {
         <ColorSelector
           colors={this.state.item.length ? JSON.parse(this.state.item[0].colors) : []}
           selectColor={this.selectColor}
+          selectedColor={this.state.selectedColor}
         />
         <SizeSelector
           sizes={this.state.item.length ? JSON.parse(this.state.item[0].sizes) : []}
