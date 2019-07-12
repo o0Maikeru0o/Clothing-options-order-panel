@@ -64,6 +64,7 @@ const generateNewItem = id => ({
   fit: fit[getRandomIndex(fit.length)],
   sizes: getNRandomElements(sizes, 3),
   colors: getNRandomElements(colors, 3),
+  price: `$${getRandomIndex(1000)}.00`,
 });
 
 /** ********************************************************************* */
@@ -85,6 +86,7 @@ const seed = () => {
         fit: item.fit,
         sizes: JSON.stringify(item.sizes),
         colors: JSON.stringify(item.colors),
+        price: item.price,
       };
 
       db.connection.query(q, post, (err, results) => {

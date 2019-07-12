@@ -1,7 +1,7 @@
 const db = require('../database/index.js');
 const seed = require('../server/seed.js');
 
-describe('seed script', () => {
+xdescribe('seed script', () => {
   let items;
 
   beforeAll(async () => {
