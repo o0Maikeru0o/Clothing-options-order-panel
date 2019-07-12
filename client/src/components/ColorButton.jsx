@@ -5,7 +5,7 @@ const ColorButton = (props) => {
   return (
     <div>
       <RadioButton />
-      <RadioButtonLabel />
+      <RadioButtonLabel>{props.color}</RadioButtonLabel>
     </div>
   );
 };
