@@ -13,7 +13,11 @@ class ItemSummary extends React.Component {
     super(props);
     this.state = {
       item: [],
+      sizeListOpen: false,
+      selectedColor: '',
     };
+    this.toggleSizeList = this.toggleSizeList.bind(this);
+    this.selectColor = this.selectColor.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +36,15 @@ class ItemSummary extends React.Component {
     })
   }
 
+  toggleSizeList() {
+    this.setState({sizeListOpen: !this.state.sizeListOpen});
+  }
+
+  selectColor(event) {
+    console.log(event.target.value);
+    this.setState({ selectedColor: event.target.value })
+  }
+
   render() {
     return (
       <Main>
@@ -43,8 +56,13 @@ class ItemSummary extends React.Component {
           description={this.state.item.length ? this.state.item[0].description : null}
         />
         <ColorSelector
-          colors={this.state.item.length ? JSON.parse(this.state.item[0].colors) : []}/>
-        <SizeSelector />
+          colors={this.state.item.length ? JSON.parse(this.state.item[0].colors) : []}
+          selectColor={this.selectColor}
+        />
+        <SizeSelector
+          sizes={this.state.item.length ? JSON.parse(this.state.item[0].sizes) : []}
+          toggleSizeList={this.toggleSizeList}
+        />
         <Accordions />
       </Main>
     )
