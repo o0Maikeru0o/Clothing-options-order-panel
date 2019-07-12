@@ -41,7 +41,7 @@ class ItemSummary extends React.Component {
         <Description
           description={this.state.item.length ? this.state.item[0].description : null}
         />
-        <ColorSelector colors={this.state.item.length ? JSON.parse(this.state.item[0].colors) : null}/>
+        <ColorSelector colors={this.state.item.length ? JSON.parse(this.state.item[0].colors) : []}/>
         <Accordions />
       </Main>
     )
