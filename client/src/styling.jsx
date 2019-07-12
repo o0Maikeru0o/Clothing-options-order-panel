@@ -22,6 +22,7 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const ColorContainer = styled.div`
+  display: flex;
   padding: 0.5em;
   background: white;
   margin: 0px 0px 30px;
@@ -60,11 +61,16 @@ export const WhyWeMadeThis = styled.h2`
 
 // Color Picker Buttons
 export const RadioButton = styled.div`
+  background: black;
   height: 1.5rem;
   width: 3rem;
+  margin: 5px;
 `;
 
 export const RadioButtonLabel = styled.label`
   height: 1rem;
   width: 1rem;
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0 auto 1.5rem;
 `;
