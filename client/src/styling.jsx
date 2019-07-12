@@ -10,18 +10,18 @@ export const Main = styled.section`
 
 // Component Containers
 
-export const NamePriceContainer = styled.section`
+export const NamePriceContainer = styled.div`
   padding: 0.5em;
   background: white;
 `;
 
-export const DescriptionContainer = styled.section`
+export const DescriptionContainer = styled.div`
   padding: 0.5em;
   background: white;
   margin: 0px 0px 30px;
 `;
 
-export const ColorContainer = styled.section`
+export const ColorContainer = styled.div`
   padding: 0.5em;
   background: white;
   margin: 0px 0px 30px;
@@ -55,4 +55,16 @@ export const ItemDescription = styled.p`
 export const WhyWeMadeThis = styled.h2`
   font-size: 1rem;
   margin: 0px 0px 10px;
+`;
+
+
+// Color Picker Buttons
+export const RadioButton = styled.div`
+  height: 1.5rem;
+  width: 3rem;
+`;
+
+export const RadioButtonLabel = styled.label`
+  height: 1rem;
+  width: 1rem;
 `;
