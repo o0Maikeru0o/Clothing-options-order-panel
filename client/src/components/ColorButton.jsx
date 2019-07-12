@@ -1,12 +1,12 @@
 import React from 'react';
-import { RadioButton, RadioButtonLabel } from '../styling.jsx';
+import { RadioButtonContainer, RadioButton, RadioButtonLabel } from '../styling.jsx';
 
 const ColorButton = (props) => {
   return (
-    <div>
-      <RadioButton />
+    <RadioButtonContainer>
+      <RadioButton value={props.color.toLowerCase()} onClick={props.selectColor}/>
       <RadioButtonLabel>{props.color}</RadioButtonLabel>
-    </div>
+    </RadioButtonContainer>
   );
 };
 
