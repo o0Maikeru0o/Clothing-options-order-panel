@@ -1,4 +1,4 @@
-# matt-item-summary
+# Wawa Melon Item Summary
 Item Summary Module
 
 ## Related Projects
