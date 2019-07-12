@@ -1,11 +1,12 @@
 import React from 'react';
+import {DescriptionContainer} from '../styling.jsx';
 
 const Description = (props) => {
   return (
-    <div>
+    <DescriptionContainer>
       Why we made this:
       {props.description}
-    </div>
+    </DescriptionContainer>
   )
 };
 

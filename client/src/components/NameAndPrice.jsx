@@ -1,11 +1,12 @@
 import React from 'react';
+import {NamePriceContainer} from '../styling.jsx';
 
 const NameAndPrice = (props) => {
   return (
-    <div>
+    <NamePriceContainer>
       {props.name} <br></br>
       {props.price}
-    </div>
+    </NamePriceContainer>
   )
 };
 

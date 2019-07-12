@@ -1,7 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
+import styled from 'styled-components';
 import NameAndPrice from './NameAndPrice.jsx';
 import Description from './Description.jsx';
+import {Main} from '../styling.jsx';
 
 class ItemSummary extends React.Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class ItemSummary extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <Main>
         <NameAndPrice
           name={this.state.item.length ? this.state.item[0].name : null}
           price={this.state.item.length ? this.state.item[0].price : null}
@@ -37,7 +39,7 @@ class ItemSummary extends React.Component {
         <Description
           description={this.state.item.length ? this.state.item[0].description : null}
         />
-      </div>
+      </Main>
     )
   }
 };
