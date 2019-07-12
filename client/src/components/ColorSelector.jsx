@@ -7,7 +7,7 @@ const ColorSelector = (props) => {
     <ColorContainer>
 
       {props.colors.map((color) => {
-        return <ColorButton key={color} color={color}/>
+        return <ColorButton key={color} color={color} selectColor={props.selectColor}/>
       })}
 
     </ ColorContainer>
