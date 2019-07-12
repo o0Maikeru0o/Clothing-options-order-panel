@@ -3,7 +3,9 @@ import {ColorContainer} from '../styling.jsx';
 
 const ColorSelector = (props) => {
   return (
-    <ColorContainer>color selector goes here</ColorContainer>
+    <ColorContainer>
+      Color selector goes here
+    </ ColorContainer>
   );
 }
 
