@@ -28,6 +28,13 @@ export const ColorContainer = styled.div`
   margin: 0px 0px 30px;
 `;
 
+export const SizeContainer = styled.div`
+  display: flex;
+  padding: 0.5em;
+  background: white;
+  margin: 0px 0px 30px;
+`;
+
 export const AccordionContainer = styled.div`
   padding: 0.5em;
   background: white;
