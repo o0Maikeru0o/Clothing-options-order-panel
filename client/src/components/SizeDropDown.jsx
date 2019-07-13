@@ -1,4 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
+import { DropDownList, DropDownItem } from '../styling.jsx';
+import DropDownHeader from './DropDownHeader.jsx';
 
 class SizeDropDown extends React.Component {
   constructor(props) {
@@ -6,29 +9,30 @@ class SizeDropDown extends React.Component {
     this.state = {
       dropDownOpen: false,
     };
+    this.toggleDropDown = this.toggleDropDown.bind(this);
+  }
+
+  toggleDropDown() {
+    this.setState({ dropDownOpen: !this.state.dropDownOpen})
   }
 
   render() {
-    if (this.state.dropDownOpen) {
-      return (
-        <div>DropDown Opened!</div>
-      );
-    } else {
-      return (
-        <div>DropDown Closed</div>
-      );
-    }
+    return (
+      <div className={this.props.className}>
+        <DropDownHeader toggleDropDown={this.toggleDropDown}/>
+        <DropDownList dropDownOpen={this.state.dropDownOpen}>
+          {this.props.sizes.map((size) => {
+            return <DropDownItem>{size}</DropDownItem>
+          })}
+        </DropDownList>
+      </div>
+    );
   }
 };
 
-// const SizeDropDown = (props) => {
-//   return (
-//     <select value={'Select a size'}>
-//       {props.sizes.map((size) => {
-//         return <option value={size}>{size}</option>
-//       })}
-//     </select>
-//   );
-// };
+export default styled(SizeDropDown)`
+  // border: 2px solid green;
+  width: 100%;
+`;
 
-export default SizeDropDown;
+// export default SizeDropDown;
