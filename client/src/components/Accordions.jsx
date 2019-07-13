@@ -3,7 +3,9 @@ import {AccordionContainer} from '../styling.jsx';
 
 const Accordions = (props) => {
   return (
-    <AccordionContainer>Accordions go here</ AccordionContainer>
+    <AccordionContainer>
+      Accordions
+    </ AccordionContainer>
   );
 };
 
