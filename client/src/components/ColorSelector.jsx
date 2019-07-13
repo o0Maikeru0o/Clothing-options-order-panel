@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const ColorSelector = (props) => {
   return (
-    <ColorContainer>
+    <ColorContainer className={props.className}>
 
       {props.colors.map((color) => {
         return <ColorButton key={color} color={color} selectColor={props.selectColor}/>
@@ -17,12 +17,8 @@ const ColorSelector = (props) => {
   );
 }
 
-const StyledColorSelector = styled(ColorSelector)`
+export default styled(ColorSelector)`
   display: flex;
   flex-direction: row;
-  background: black;
+  background: snow;
 `;
-
-
-//NOTE: find how to add rules to existing component
-export default StyledColorSelector;
