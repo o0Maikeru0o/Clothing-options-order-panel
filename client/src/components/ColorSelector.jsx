@@ -1,6 +1,5 @@
 import React from 'react';
 import ColorButton from './ColorButton.jsx';
-import {RadioButtonLabel} from '../styling.jsx';
 import styled from 'styled-components';
 
 const ColorContainer = styled.div`
@@ -12,6 +11,14 @@ const ColorContainer = styled.div`
   background: white;
   margin: 0px 0px 30px;
   border-top: 1px solid rgba(0, 0, 0, .3);
+`;
+
+const RadioButtonLabel = styled.div`
+  height: auto;
+  width: auto;
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0 auto 1rem;
 `;
 
 const ColorSelector = (props) => {
