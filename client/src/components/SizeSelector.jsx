@@ -15,6 +15,7 @@ const SizeSelector = (props) => {
 
 export default styled(SizeSelector)`
   padding: 0;
+  max-width: 300px;
 `;
 
 // export default SizeSelector;
