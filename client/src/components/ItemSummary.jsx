@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import NameAndPrice from './NameAndPrice.jsx';
 import Description from './Description.jsx';
 import ColorSelector from './ColorSelector.jsx';
-import Accordions from './Accordions.jsx';
+import Accordion from './Accordions.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import {Main} from '../styling.jsx';
 
@@ -13,7 +13,6 @@ class ItemSummary extends React.Component {
     super(props);
     this.state = {
       item: [],
-      sizeListOpen: false,
       selectedColor: 'select a color',
     };
     this.selectColor = this.selectColor.bind(this);
@@ -58,7 +57,12 @@ class ItemSummary extends React.Component {
         <SizeSelector
           sizes={this.state.item.length ? JSON.parse(this.state.item[0].sizes) : []}
         />
-        <Accordions />
+        <Accordion
+          fit={this.state.item.length ? this.state.item[0].fit : null}
+          fabric={this.state.item.length ? this.state.item[0].fabric : 'test'}
+          care={this.state.item.length ? this.state.item[0].care : []}
+          designedFor={this.state.item.length ? this.state.item[0].designed_for : null}
+        />
       </Main>
     )
   }
