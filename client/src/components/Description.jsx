@@ -4,7 +4,7 @@ import {DescriptionContainer, WhyWeMadeThis, ItemDescription} from '../styling.j
 const Description = (props) => {
   return (
     <DescriptionContainer>
-      <WhyWeMadeThis>Why we made this: </WhyWeMadeThis><br></br>
+      <WhyWeMadeThis>Why we made this </WhyWeMadeThis><br></br>
       <ItemDescription>{props.description}</ItemDescription>
     </DescriptionContainer>
   )
