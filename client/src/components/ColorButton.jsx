@@ -33,7 +33,7 @@ const ColorButton = (props) => {
   return (
     <RadioButtonContainer>
       <RadioButton value={props.color.toLowerCase()} onClick={props.selectColor} selectedColor={props.selectedColor}/>
-      <RadioButtonLabel>{props.color}</RadioButtonLabel>
+      {/* <RadioButtonLabel>{props.color}</RadioButtonLabel> */}
     </RadioButtonContainer>
   );
 };
