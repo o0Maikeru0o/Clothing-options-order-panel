@@ -11,11 +11,6 @@ export const Main = styled.section`
 
 // ///////// Component Containers ///////////////////
 
-export const NamePriceContainer = styled.div`
-  padding: 0.5em;
-  background: rgb(250,250,250)
-`;
-
 export const DescriptionContainer = styled.div`
   padding: 0.5em;
   background: rgb(250,250,250);
@@ -72,32 +67,3 @@ export const SelectedSize = styled.div`
   margin-top: 8px;
 `;
 
-// //////////// NameAndPrice sub-containers ///////////////////
-
-export const ItemName = styled.div`
-  font-size: 2.25rem;
-  font-weight: 600;
-`;
-
-export const ItemPrice = styled.div`
-  font-size: 1rem;
-  font-weight: 100;
-  display: flex;
-  margin: 0px 0px 45px;
-`;
-
-export const CurrencyTag = styled.div`
-  font-size: .75rem;
-  padding: .75% 1% 0px;
-`;
-
-// ////////////// Description sub-containers ///////////////////////
-
-export const ItemDescription = styled.p`
-  margin: 0px 0px 30px;
-`;
-
-export const WhyWeMadeThis = styled.h2`
-  font-size: 1rem;
-  margin: 0px 0px 10px;
-`;

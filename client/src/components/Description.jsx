@@ -1,5 +1,13 @@
 import React from 'react';
-import {DescriptionContainer, WhyWeMadeThis, ItemDescription} from '../styling.jsx';
+
+const ItemDescription = styled.p`
+  margin: 0px 0px 30px;
+`;
+
+const WhyWeMadeThis = styled.h2`
+  font-size: 1rem;
+  margin: 0px 0px 10px;
+`;
 
 const Description = (props) => {
   return (
