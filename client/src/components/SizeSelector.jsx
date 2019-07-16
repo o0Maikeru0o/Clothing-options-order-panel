@@ -1,7 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import SizeDropDown from './SizeDropDown.jsx';
-import { SizeContainer } from '../styling.jsx';
+
+const SizeContainer = styled.div`
+  height: 40px;
+  display: flex;
+  padding: 0;
+  background: white;
+  margin: 0px 0px 30px;
+  border: 1px solid rgba(0, 0, 0, .1);
+`;
 
 const SizeSelector = (props) => {
   return (

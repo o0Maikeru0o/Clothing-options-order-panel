@@ -1,7 +1,16 @@
 import React from 'react';
-import { SelectedSize, DropDownLabel } from '../styling.jsx';
 // import { DropDownHeaderContainer } from '../styling.jsx';
 import styled from 'styled-components';
+
+const SelectedSize = styled.div`
+  margin-left: 69%;
+  margin-top: 8px;
+`;
+
+const DropDownLabel = styled.div`
+  margin-top: 10px;
+  margin-left: 20px;
+`;
 
 const DropDownHeader = (props) => {
   return (
