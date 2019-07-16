@@ -23,12 +23,16 @@ const TabContent = styled.div`
 
 `;
 
+//NOTE: Will probably refactor TabContent to be its own component with rendering based on the title of the tab
+
 const Tab = (props) => {
   if (props.title === props.openedTab) {
     return (
       <TabContainer>
         <TabTitle onClick={props.updateTabDisplay}> {props.title}</TabTitle>
-        <TabContent> {props.content} </TabContent>
+        <TabContent>
+        {props.content}
+        </TabContent>
       </TabContainer>
     );
   } else {
