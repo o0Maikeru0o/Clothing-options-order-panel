@@ -7,12 +7,12 @@ const TabContainer = styled.div`
   flex-direction: column;
   margin-bottom: 1rem;
   background: white;
+  box-shadow: 0 4px 1.5px -1.5px rgba(0, 0, 0, .1);
 `;
 
 const TabTitle = styled.div`
   padding: 10px;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, .1);
 
   :hover {
     cursor: pointer;
@@ -21,7 +21,7 @@ const TabTitle = styled.div`
 
 const TabContentContainer = styled.div`
   padding: 5px;
-  border: 1px solid rgba(0, 0, 0, .1);
+  transition: height 1s;
 `;
 
 //NOTE: Will probably refactor TabContent to be its own component with rendering based on the title of the tab

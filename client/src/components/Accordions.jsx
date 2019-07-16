@@ -6,6 +6,7 @@ const AccordionContainer = styled.div`
   padding: 0;
   background: rgb(250,250,250);
   margin: 0px 0px 30px;
+  margin-top: 1.5rem;
   // border: 1px solid rgba(0, 0, 0, .1);
 `;
 
