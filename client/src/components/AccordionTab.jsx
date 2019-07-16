@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import AccordionTabContent from './AccordionTabContent.jsx';
 
 const TabContainer = styled.div`
   display: flex;
@@ -17,10 +18,9 @@ const TabTitle = styled.div`
   }
 `;
 
-const TabContent = styled.div`
+const TabContentContainer = styled.div`
   padding: 5px;
   border: 1px solid rgba(0, 0, 0, .1);
-
 `;
 
 //NOTE: Will probably refactor TabContent to be its own component with rendering based on the title of the tab
@@ -30,9 +30,9 @@ const Tab = (props) => {
     return (
       <TabContainer>
         <TabTitle onClick={props.updateTabDisplay}> {props.title}</TabTitle>
-        <TabContent>
-        {props.content}
-        </TabContent>
+        <TabContentContainer >
+          <AccordionTabContent tabTitle={props.title} tabContent={props.content} />
+        </TabContentContainer>
       </TabContainer>
     );
   } else {

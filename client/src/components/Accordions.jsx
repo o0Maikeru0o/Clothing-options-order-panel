@@ -29,19 +29,16 @@ class Accordion extends React.Component {
         id: 1,
         title: 'Fabric',
         content: this.props.fabric,
-        active: false
       },
       {
         id: 2,
         title: 'Care',
         content: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
-        active: true
       },
       {
         id: 3,
         title: 'Instructions',
         content: 'this is where instructions goes',
-        active: false
       }
     ];
 
@@ -53,7 +50,6 @@ class Accordion extends React.Component {
               openedTab={this.state.openedTab}
               updateTabDisplay={this.updateTabDisplay}
               key={tab.id}
-              active={tab.active}
               content={tab.content}
               title={tab.title}
               tabId={tab.id}
