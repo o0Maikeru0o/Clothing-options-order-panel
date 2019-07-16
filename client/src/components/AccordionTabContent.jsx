@@ -7,34 +7,60 @@ const FabricContentContainer = styled.div`
 `;
 
 const FabricName = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.15rem;
+  font-weight: bold;
   padding: 1rem;
 `;
 
 const FabricDescription = styled.p`
   margin: 0;
   padding: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, .1);
+  // border-top: 1px solid rgba(0, 0, 0, .1);
 `;
+
+const CareList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  list-style: none;
+`;
+
+const CareItem = styled.li`
+  margin: .5rem;
+  width: 100%;
+`;
+
+const placeholderDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
+const placeholderFeatures = 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?';
 
 const AccordionTabContent = (props) => {
   //render different layout based on Tab Title
+  let careItems = JSON.parse(props.care);
 
   if (props.tabTitle === 'Fabric') {
     return (
       <FabricContentContainer>
         <FabricName>{props.tabContent}</FabricName>
-        <FabricDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</FabricDescription>
+        <FabricDescription>{placeholderDescription}</FabricDescription>
       </FabricContentContainer>
     );
 
   } else if (props.tabTitle === 'Care') {
     return (
-      <div> Tab Content blablabla</div>
+      //List of care items
+      //dynamically render each item as a component
+      <CareList care={props.care}>
+        {JSON.parse(props.care).map((item, index) => {
+          return <CareItem key={index}>{item}</CareItem>
+        })}
+        <CareItem> (╯°□°)╯︵ ┻━┻</CareItem>
+      </CareList>
     )
-  } else {
+  } else if (props.tabTitle === 'Features'){
     return (
-      <div> Tab Content blablabla</div>
+      //
+      <div>╮ (. ❛ ᴗ ❛.) ╭ {placeholderFeatures} </div>
     )
   }
 

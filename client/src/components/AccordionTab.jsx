@@ -6,6 +6,7 @@ const TabContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  background: white;
 `;
 
 const TabTitle = styled.div`
@@ -31,7 +32,7 @@ const Tab = (props) => {
       <TabContainer>
         <TabTitle onClick={props.updateTabDisplay}> {props.title}</TabTitle>
         <TabContentContainer >
-          <AccordionTabContent tabTitle={props.title} tabContent={props.content} />
+          <AccordionTabContent care={props.care} tabTitle={props.title} tabContent={props.content} />
         </TabContentContainer>
       </TabContainer>
     );

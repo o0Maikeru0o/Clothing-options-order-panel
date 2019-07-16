@@ -4,7 +4,7 @@ import AccordionTab from './AccordionTab.jsx';
 
 const AccordionContainer = styled.div`
   padding: 0;
-  background: white;
+  background: rgb(250,250,250);
   margin: 0px 0px 30px;
   // border: 1px solid rgba(0, 0, 0, .1);
 `;
@@ -33,12 +33,12 @@ class Accordion extends React.Component {
       {
         id: 2,
         title: 'Care',
-        content: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+        content: this.props.care,
       },
       {
         id: 3,
-        title: 'Instructions',
-        content: 'this is where instructions goes',
+        title: 'Features',
+        content: 'this is where features goes',
       }
     ];
 
@@ -54,6 +54,8 @@ class Accordion extends React.Component {
               title={tab.title}
               tabId={tab.id}
               openedTab={this.state.openedTab}
+              care={this.props.care}
+              designedFor={this.props.designedFor}
             />
           );
         })}
