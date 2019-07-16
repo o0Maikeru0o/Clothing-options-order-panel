@@ -36,7 +36,6 @@ const placeholderFeatures = 'Ut enim ad minima veniam, quis nostrum exercitation
 
 const AccordionTabContent = (props) => {
   //render different layout based on Tab Title
-  let careItems = JSON.parse(props.care);
 
   if (props.tabTitle === 'Fabric') {
     return (
@@ -48,7 +47,7 @@ const AccordionTabContent = (props) => {
 
   } else if (props.tabTitle === 'Care') {
     return (
-      //List of care items
+      //Array of care instructions
       //dynamically render each item as a component
       <CareList care={props.care}>
         {JSON.parse(props.care).map((item, index) => {
@@ -59,7 +58,9 @@ const AccordionTabContent = (props) => {
     )
   } else if (props.tabTitle === 'Features'){
     return (
-      //
+      //designedFor               -->     office/travel/commute
+      //Fabric                    -->     description (fabric)
+      //Fit (relaxed, hip length) -->     description (fit)
       <div>╮ (. ❛ ᴗ ❛.) ╭ {placeholderFeatures} </div>
     )
   }
