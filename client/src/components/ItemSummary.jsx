@@ -26,12 +26,12 @@ class ItemSummary extends React.Component {
 
   getItemById(id) {
     $.ajax({
-      url: `/api/${id}`,
+      url: `/api/itemSummary/${id}`,
       method: 'GET',
       success: (results) => {
         this.setState({item: JSON.parse(results)});
       },
-      error: () => console.log(`error sending GET to /api/${id} from client`)
+      error: () => console.log(`error sending GET to /api/itemSummary/${id} from client`)
     })
   }
 
