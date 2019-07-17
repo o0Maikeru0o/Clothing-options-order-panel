@@ -26,7 +26,7 @@ class ItemSummary extends React.Component {
 
   getItemById(id) {
     $.ajax({
-      url: `http://localhost:3002/api/${id}`,
+      url: `/api/${id}`,
       method: 'GET',
       success: (results) => {
         this.setState({item: JSON.parse(results)});
