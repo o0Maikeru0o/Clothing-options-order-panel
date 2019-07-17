@@ -16,7 +16,7 @@ app.get('/api/items', (req, res) => {
     .then((results) => {
       res.end(JSON.stringify(results));
     })
-    .catch(err => console.log('promise rejection error ', err));
+    .catch(err => res.end(err));
   // res.end("successfully sent GET to /api/items");
 });
 
