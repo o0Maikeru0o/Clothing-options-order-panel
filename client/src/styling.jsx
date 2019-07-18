@@ -5,6 +5,6 @@ export const Main = styled.section`
   flex-direction: column;
   padding: 1em;
   background: rgb(250,250,250);
-  max-width: 500px;
+  width: 400px;
   font-family: Arial, Helvetica, sans-serif;
 `;
