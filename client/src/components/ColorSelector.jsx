@@ -8,7 +8,6 @@ const ColorContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   padding: 0.5em;
-  background: white;
   margin: 0px 0px 30px;
   border-top: 1px solid rgba(0, 0, 0, .3);
 `;
