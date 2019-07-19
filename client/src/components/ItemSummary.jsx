@@ -15,8 +15,12 @@ class ItemSummary extends React.Component {
     this.state = {
       item: [],
       selectedColor: {colorName: 'Select Color', sizes: []},
+      selectedSize: '0',
+      dropDownOpen: false,
     };
     this.selectColor = this.selectColor.bind(this);
+    this.handleDropDownSubmit = this.handleDropDownSubmit.bind(this);
+    this.toggleDropDown = this.toggleDropDown.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +47,17 @@ class ItemSummary extends React.Component {
     this.setState({ selectedColor: matchingColorObj });
   }
 
+  handleDropDownSubmit(event) {
+    this.setState({
+      selectedSize: event.target.value,
+      dropDownOpen: false,
+    })
+  }
+
+  toggleDropDown() {
+    this.setState({ dropDownOpen: !this.state.dropDownOpen})
+  }
+
   render() {
     var item = this.state.item;
     return (
@@ -61,6 +76,10 @@ class ItemSummary extends React.Component {
         />
         <SizeSelector
           sizes={item.length ? this.state.selectedColor.sizes : []}
+          selectedSize={this.state.selectedSize}
+          handleDropDownSubmit={this.handleDropDownSubmit}
+          toggleDropDown={this.toggleDropDown}
+          dropDownOpen={this.state.dropDownOpen}
         />
         <ShippingMock />
         <Accordion
