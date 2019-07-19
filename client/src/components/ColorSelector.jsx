@@ -32,17 +32,20 @@ const ColorSelector = (props) => {
   return (
     <ColorContainer className={props.className}>
       <ColorButtonContainer>
-        {props.colors.map((color) => {
+        {props.colors.map((color, index) => {
           return <ColorButton
-          key={color}
-          color={color}
+          key={index}
+          color={color.colorName}
           selectColor={props.selectColor}
           selectedColor={props.selectedColor}
           />
         })}
       </ColorButtonContainer>
 
-      <RadioButtonLabel>{props.selectedColor.charAt(0).toUpperCase() + props.selectedColor.slice(1)}</RadioButtonLabel>
+      <RadioButtonLabel>
+        {/* {props.selectedColor.charAt(0).toUpperCase() + props.selectedColor.slice(1)} */}
+        {props.selectedColor}
+      </RadioButtonLabel>
 
     </ ColorContainer>
   );

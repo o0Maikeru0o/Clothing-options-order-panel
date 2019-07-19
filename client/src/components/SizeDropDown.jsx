@@ -60,7 +60,11 @@ class SizeDropDown extends React.Component {
         <DropDownHeader selectedSize={this.state.selectedSize} toggleDropDown={this.toggleDropDown}/>
         <DropDownList dropDownOpen={this.state.dropDownOpen}>
           {this.props.sizes.map((size) => {
-            return <DropDownItem key={size} value={size} onClick={this.handleDropDownSubmit}>{size}</DropDownItem>
+            if (size.stock === 0) {
+              return <DropDownItem key={size.size} value={size.size} onClick={this.handleDropDownSubmit}>{size.size}(out of stock)</DropDownItem>
+            } else {
+              return <DropDownItem key={size.size} value={size.size} onClick={this.handleDropDownSubmit}>{size.size}</DropDownItem>
+            }
           })}
         </DropDownList>
       </div>

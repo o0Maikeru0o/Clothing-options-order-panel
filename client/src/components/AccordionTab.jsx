@@ -32,7 +32,13 @@ const Tab = (props) => {
       <TabContainer>
         <TabTitle onClick={props.updateTabDisplay}> {props.title}</TabTitle>
         <TabContentContainer >
-          <AccordionTabContent care={props.care} tabTitle={props.title} tabContent={props.content} />
+          <AccordionTabContent
+          fabric={props.fabric}
+          care={props.care}
+          tabTitle={props.title}
+          tabContent={props.content}
+          features={props.features}
+          />
         </TabContentContainer>
       </TabContainer>
     );

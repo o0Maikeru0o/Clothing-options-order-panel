@@ -20,7 +20,6 @@ class Accordion extends React.Component {
   }
 
   updateTabDisplay(event) {
-    console.log(event.target.innerHTML)
     this.setState({ openedTab: event.target.innerHTML })
   }
 
@@ -29,7 +28,7 @@ class Accordion extends React.Component {
       {
         id: 1,
         title: 'Fabric',
-        content: this.props.fabric,
+        content: this.props.fabric.fabricName,
       },
       {
         id: 2,
@@ -56,7 +55,9 @@ class Accordion extends React.Component {
               tabId={tab.id}
               openedTab={this.state.openedTab}
               care={this.props.care}
-              designedFor={this.props.designedFor}
+              fabric={this.props.fabric}
+              features={this.props.features}
+              // designedFor={this.props.designedFor}
             />
           );
         })}

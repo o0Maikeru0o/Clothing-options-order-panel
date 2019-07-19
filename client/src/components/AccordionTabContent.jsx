@@ -18,6 +18,20 @@ const FabricDescription = styled.p`
   // border-top: 1px solid rgba(0, 0, 0, .1);
 `;
 
+const FabricFeaturesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  padding: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+`;
+
+const FabricFeature = styled.div`
+  margin-right: 3rem;
+  width: 50%
+  // padding: 3rem;
+`;
+
 const CareList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -28,6 +42,25 @@ const CareList = styled.ul`
 const CareItem = styled.li`
   margin: .5rem;
   width: 100%;
+`;
+
+const ItemFeaturesContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ItemFeature = styled.li`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+`;
+
+const ItemFeatureName = styled.div`
+  margin-right: 30%;
+`;
+
+const ItemFeatureDescription = styled.div`
+
 `;
 
 const placeholderDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -41,7 +74,12 @@ const AccordionTabContent = (props) => {
     return (
       <FabricContentContainer>
         <FabricName>{props.tabContent}</FabricName>
-        <FabricDescription>{placeholderDescription}</FabricDescription>
+        <FabricDescription>{props.fabric.fabricDescription}</FabricDescription>
+        <FabricFeaturesContainer>
+          {props.fabric.fabricFeatures.map((feature, index) => {
+            return <FabricFeature key={index}>{feature}</FabricFeature>
+          })}
+        </FabricFeaturesContainer>
       </FabricContentContainer>
     );
 
@@ -61,7 +99,20 @@ const AccordionTabContent = (props) => {
       //designedFor               -->     office/travel/commute
       //Fabric                    -->     description (fabric)
       //Fit (relaxed, hip length) -->     description (fit)
-      <div>╮ (. ❛ ᴗ ❛.) ╭ {placeholderFeatures} </div>
+      <ItemFeaturesContainer>
+        <ItemFeature>
+          <ItemFeatureName>Designed For</ItemFeatureName>
+          {props.features.designedFor[0]}
+        </ItemFeature>
+        <ItemFeature>
+          <ItemFeatureName>
+            {props.features.fit.join(', ').toUpperCase()}
+          {/* {props.features.fit.map((fit) => {
+            return fit
+          })} */}
+          </ItemFeatureName>
+        </ItemFeature>
+      </ItemFeaturesContainer>
     )
   }
 
