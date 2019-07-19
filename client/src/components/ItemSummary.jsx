@@ -14,7 +14,7 @@ class ItemSummary extends React.Component {
     super(props);
     this.state = {
       item: [],
-      selectedColor: 'select a color',
+      selectedColor: {colorName: 'Select Color', sizes: []},
     };
     this.selectColor = this.selectColor.bind(this);
   }
@@ -36,34 +36,37 @@ class ItemSummary extends React.Component {
   }
 
   selectColor(event) {
-    console.log(event.target.value);
-    this.setState({ selectedColor: event.target.value })
+    var capitalizedColor = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
+    var parsedColors = JSON.parse(this.state.item[0].colors);
+    var matchingColorObj = parsedColors.find(color => color.colorName === capitalizedColor);
+
+    this.setState({ selectedColor: matchingColorObj });
   }
 
   render() {
+    var item = this.state.item;
     return (
       <Main>
         <NameAndPrice
-          name={this.state.item.length ? this.state.item[0].name : null}
-          price={this.state.item.length ? this.state.item[0].price : null}
+          name={item.length ? item[0].name : null}
+          price={item.length ? item[0].price : null}
         />
         <Description
-          description={this.state.item.length ? this.state.item[0].description : null}
+          description={item.length ? item[0].description : null}
         />
         <ColorSelector
-          colors={this.state.item.length ? JSON.parse(this.state.item[0].colors) : []}
+          colors={item.length ? JSON.parse(item[0].colors) : []}
           selectColor={this.selectColor}
-          selectedColor={this.state.selectedColor}
+          selectedColor={this.state.selectedColor.colorName}
         />
         <SizeSelector
-          sizes={this.state.item.length ? JSON.parse(this.state.item[0].sizes) : []}
+          sizes={item.length ? this.state.selectedColor.sizes : []}
         />
         <ShippingMock />
         <Accordion
-          fit={this.state.item.length ? this.state.item[0].fit : null}
-          fabric={this.state.item.length ? this.state.item[0].fabric : 'test'}
-          care={this.state.item.length ? this.state.item[0].care : []}
-          designedFor={this.state.item.length ? this.state.item[0].designed_for : null}
+          fabric={item.length ? JSON.parse(item[0].fabric) : 'test'}
+          care={item.length ? item[0].care : []}
+          features={item.length ? JSON.parse(item[0].features) : {}}
         />
       </Main>
     )
