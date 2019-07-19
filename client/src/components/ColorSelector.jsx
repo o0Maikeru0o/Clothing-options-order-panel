@@ -38,6 +38,7 @@ const ColorSelector = (props) => {
           color={color.colorName}
           selectColor={props.selectColor}
           selectedColor={props.selectedColor}
+          selectedSize={props.selectedSize}
           />
         })}
       </ColorButtonContainer>

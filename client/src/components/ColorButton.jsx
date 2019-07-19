@@ -5,6 +5,7 @@ const RadioButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0px 0px 0px;
+  padding: .3rem;
 `;
 
 const RadioButton = styled.button`
@@ -13,11 +14,13 @@ const RadioButton = styled.button`
   width: 3rem;
   margin: 5px;
   border: ${(props) => {
-    return props.selectedColor === props.value.toLowerCase() ? '1px solid black' : '';
+    return props.selectedColor.colorName === props.value.toLowerCase() ? '1px solid black' : '';
   }};
+
 
   :hover {
     cursor: pointer;
+    // opacity: .75;
   }
 `;
 
@@ -31,9 +34,13 @@ const RadioButtonLabel = styled.div`
 
 const ColorButton = (props) => {
   return (
-    <RadioButtonContainer>
-      <RadioButton value={props.color.toLowerCase()} onClick={props.selectColor} selectedColor={props.selectedColor}/>
-      {/* <RadioButtonLabel>{props.color}</RadioButtonLabel> */}
+    <RadioButtonContainer selectedColor={props.selectedColor}>
+      <RadioButton
+      value={props.color.toLowerCase()}
+      onClick={props.selectColor}
+      selectedColor={props.selectedColor}
+      selectedSize={props.selectedSize}
+      />
     </RadioButtonContainer>
   );
 };

@@ -73,6 +73,7 @@ class ItemSummary extends React.Component {
           colors={item.length ? JSON.parse(item[0].colors) : []}
           selectColor={this.selectColor}
           selectedColor={this.state.selectedColor.colorName}
+          selectedSize={this.state.selectedSize}
         />
         <SizeSelector
           sizes={item.length ? this.state.selectedColor.sizes : []}
