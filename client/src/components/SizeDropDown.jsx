@@ -48,32 +48,6 @@ const SizeDropDown = (props) => {
   );
 }
 
-// class SizeDropDown extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       test: "test",
-//     };
-//   }
-
-//   render() {
-//     return (
-//       <div className={this.props.className}>
-//         <DropDownHeader selectedSize={this.props.selectedSize} toggleDropDown={this.props.toggleDropDown}/>
-//         <DropDownList dropDownOpen={this.props.dropDownOpen}>
-//           {this.props.sizes.map((size) => {
-//             if (size.stock === 0) {
-//               return <DropDownItem key={size.size} value={size.size} onClick={this.props.handleDropDownSubmit}>{size.size}(out of stock)</DropDownItem>
-//             } else {
-//               return <DropDownItem key={size.size} value={size.size} onClick={this.props.handleDropDownSubmit}>{size.size}</DropDownItem>
-//             }
-//           })}
-//         </DropDownList>
-//       </div>
-//     );
-//   }
-// };
-
 export default styled(SizeDropDown)`
   // border: 2px solid green;
   width: 100%;
