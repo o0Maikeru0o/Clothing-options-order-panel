@@ -52,6 +52,7 @@ class ItemSummary extends React.Component {
       selectedSize: event.target.value,
       dropDownOpen: false,
     })
+    console.log(this.state.selectedColor)
   }
 
   toggleDropDown() {
@@ -72,7 +73,7 @@ class ItemSummary extends React.Component {
         <ColorSelector
           colors={item.length ? JSON.parse(item[0].colors) : []}
           selectColor={this.selectColor}
-          selectedColor={this.state.selectedColor.colorName}
+          selectedColor={this.state.selectedColor}
           selectedSize={this.state.selectedSize}
         />
         <SizeSelector

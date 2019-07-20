@@ -7,7 +7,7 @@ const RadioButtonContainer = styled.div`
   margin-right: 12px;
   padding: .055rem;
   border: ${(props) => {
-    return props.color === props.selectedColor ? '1.3px solid black' : '';
+    return props.color === props.selectedColor.colorName ? '1.3px solid black' : '';
   }};
 `;
 
@@ -19,7 +19,6 @@ const RadioButton = styled.button`
 
   :hover {
     cursor: pointer;
-    // opacity: .75;
   }
 `;
 
@@ -33,7 +32,7 @@ const RadioButtonLabel = styled.div`
 
 const ColorButton = (props) => {
   return (
-    <RadioButtonContainer selectedColor={props.selectedColor} color={props.color}>
+    <RadioButtonContainer selectedSize={props.selectedSize} selectedColor={props.selectedColor} color={props.color}>
       <RadioButton
       color={props.color}
       value={props.color.toLowerCase()}

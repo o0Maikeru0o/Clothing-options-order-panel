@@ -43,8 +43,7 @@ const ColorSelector = (props) => {
       </ColorButtonContainer>
 
       <RadioButtonLabel>
-        {/* {props.selectedColor.charAt(0).toUpperCase() + props.selectedColor.slice(1)} */}
-        {props.selectedColor}
+        {props.selectedColor.colorName}
       </RadioButtonLabel>
 
     </ ColorContainer>
