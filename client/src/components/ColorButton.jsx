@@ -17,6 +17,25 @@ const RadioButton = styled.button`
   width: 3rem;
   margin: 2px;
 
+  opacity: ${(props) => {
+    if (props.selectedColor.sizes.length) {
+      let checkStock = (colorObj, size) => {
+        return colorObj.sizes.filter((sizeObj) => {return sizeObj.size == size})[0].stock;
+      };
+      let capitalizedColor = props.value.charAt(0).toUpperCase() + props.value.slice(1);
+
+      if (capitalizedColor === props.selectedColor.colorName) {
+        if (checkStock(props.selectedColor, props.selectedSize) === 0) {
+          return '0.5';
+        } else {
+          return '1';
+        }
+      }
+    } else {
+      return '1';
+    }
+  }};
+
   :hover {
     cursor: pointer;
   }
