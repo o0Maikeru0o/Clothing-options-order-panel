@@ -9,6 +9,24 @@ const RadioButtonContainer = styled.div`
   border: ${(props) => {
     return props.color === props.selectedColor.colorName ? '1.3px solid black' : '';
   }};
+
+  background-image: ${(props) => {
+    if (props.selectedColor.sizes.length) {
+      let checkStock = (colorObj, size) => {
+        return colorObj.sizes.filter((sizeObj) => {return sizeObj.size == size})[0].stock;
+      };
+
+      if (props.color === props.selectedColor.colorName) {
+        if (checkStock(props.selectedColor, props.selectedSize) === 0) {
+          return 'repeating-linear-gradient(150deg, transparent 0%, transparent 48%, black 50%, transparent 52%, transparent 100%)';
+        } else {
+          return 'none';
+        }
+      }
+    } else {
+      return 'none';
+    }
+  }};
 `;
 
 const RadioButton = styled.button`
