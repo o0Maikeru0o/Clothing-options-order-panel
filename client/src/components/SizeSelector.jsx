@@ -21,6 +21,7 @@ const SizeSelector = (props) => {
         handleDropDownSubmit={props.handleDropDownSubmit}
         dropDownOpen={props.dropDownOpen}
         selectedSize={props.selectedSize}
+        selectedColor={props.selectedColor}
         />
       </SizeContainer>
     </div>

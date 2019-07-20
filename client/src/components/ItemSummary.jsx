@@ -79,6 +79,7 @@ class ItemSummary extends React.Component {
         <SizeSelector
           sizes={item.length ? this.state.selectedColor.sizes : []}
           selectedSize={this.state.selectedSize}
+          selectedColor={this.state.selectedColor}
           handleDropDownSubmit={this.handleDropDownSubmit}
           toggleDropDown={this.toggleDropDown}
           dropDownOpen={this.state.dropDownOpen}

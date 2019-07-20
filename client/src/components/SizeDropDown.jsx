@@ -34,11 +34,11 @@ const DropDownItem = styled.li`
 const SizeDropDown = (props) => {
   return (
     <div className={props.className}>
-      <DropDownHeader selectedSize={props.selectedSize} toggleDropDown={props.toggleDropDown}/>
+      <DropDownHeader selectedSize={props.selectedSize} selectedColor={props.selectedColor} toggleDropDown={props.toggleDropDown}/>
       <DropDownList dropDownOpen={props.dropDownOpen}>
         {props.sizes.map((size) => {
           if (size.stock === 0) {
-            return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}(out of stock)</DropDownItem>
+            return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}(sold out online)</DropDownItem>
           } else {
             return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}</DropDownItem>
           }
