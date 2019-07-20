@@ -15,7 +15,14 @@ const SizeSelector = (props) => {
   return (
     <div className={props.className}>
       <SizeContainer>
-        <SizeDropDown sizes={props.sizes}/>
+        <SizeDropDown
+        sizes={props.sizes}
+        toggleDropDown={props.toggleDropDown}
+        handleDropDownSubmit={props.handleDropDownSubmit}
+        dropDownOpen={props.dropDownOpen}
+        selectedSize={props.selectedSize}
+        selectedColor={props.selectedColor}
+        />
       </SizeContainer>
     </div>
   );

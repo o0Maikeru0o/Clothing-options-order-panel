@@ -8,7 +8,6 @@ const ColorContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   padding: 0.5em;
-  background: white;
   margin: 0px 0px 30px;
   border-top: 1px solid rgba(0, 0, 0, .3);
 `;
@@ -38,13 +37,13 @@ const ColorSelector = (props) => {
           color={color.colorName}
           selectColor={props.selectColor}
           selectedColor={props.selectedColor}
+          selectedSize={props.selectedSize}
           />
         })}
       </ColorButtonContainer>
 
       <RadioButtonLabel>
-        {/* {props.selectedColor.charAt(0).toUpperCase() + props.selectedColor.slice(1)} */}
-        {props.selectedColor}
+        {props.selectedColor.colorName}
       </RadioButtonLabel>
 
     </ ColorContainer>

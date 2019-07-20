@@ -31,46 +31,48 @@ const DropDownItem = styled.li`
   }
 `;
 
-class SizeDropDown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropDownOpen: false,
-      selectedSize: '0',
-    };
-    this.toggleDropDown = this.toggleDropDown.bind(this);
-    this.handleDropDownSubmit = this.handleDropDownSubmit.bind(this);
-  }
+const SizeDropDown = (props) => {
+  return (
+    <div className={props.className}>
+      <DropDownHeader selectedSize={props.selectedSize} selectedColor={props.selectedColor} toggleDropDown={props.toggleDropDown}/>
+      <DropDownList dropDownOpen={props.dropDownOpen}>
+        {props.sizes.map((size) => {
+          if (size.stock === 0) {
+            return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}(sold out online)</DropDownItem>
+          } else {
+            return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}</DropDownItem>
+          }
+        })}
+      </DropDownList>
+    </div>
+  );
+}
 
-  toggleDropDown() {
-    this.setState({ dropDownOpen: !this.state.dropDownOpen})
-  }
+// class SizeDropDown extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       test: "test",
+//     };
+//   }
 
-  handleDropDownSubmit(event) {
-    // console.log(event.target)
-    this.setState({
-      selectedSize: event.target.value,
-      dropDownOpen: false,
-    })
-  }
-
-  render() {
-    return (
-      <div className={this.props.className}>
-        <DropDownHeader selectedSize={this.state.selectedSize} toggleDropDown={this.toggleDropDown}/>
-        <DropDownList dropDownOpen={this.state.dropDownOpen}>
-          {this.props.sizes.map((size) => {
-            if (size.stock === 0) {
-              return <DropDownItem key={size.size} value={size.size} onClick={this.handleDropDownSubmit}>{size.size}(out of stock)</DropDownItem>
-            } else {
-              return <DropDownItem key={size.size} value={size.size} onClick={this.handleDropDownSubmit}>{size.size}</DropDownItem>
-            }
-          })}
-        </DropDownList>
-      </div>
-    );
-  }
-};
+//   render() {
+//     return (
+//       <div className={this.props.className}>
+//         <DropDownHeader selectedSize={this.props.selectedSize} toggleDropDown={this.props.toggleDropDown}/>
+//         <DropDownList dropDownOpen={this.props.dropDownOpen}>
+//           {this.props.sizes.map((size) => {
+//             if (size.stock === 0) {
+//               return <DropDownItem key={size.size} value={size.size} onClick={this.props.handleDropDownSubmit}>{size.size}(out of stock)</DropDownItem>
+//             } else {
+//               return <DropDownItem key={size.size} value={size.size} onClick={this.props.handleDropDownSubmit}>{size.size}</DropDownItem>
+//             }
+//           })}
+//         </DropDownList>
+//       </div>
+//     );
+//   }
+// };
 
 export default styled(SizeDropDown)`
   // border: 2px solid green;
