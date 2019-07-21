@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const RadioButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 12px;
+  margin-right: 1rem;
   padding: .055rem;
   border: ${(props) => {
     return props.color === props.selectedColor.colorName ? '1.3px solid black' : '';
@@ -32,10 +32,10 @@ const RadioButtonContainer = styled.div`
 const GreyedOutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 12px
+  margin-right: 1rem;
   padding: .055rem;
   border: ${(props) => {
-    return props.color === props.selectedColor.colorName ? '1.3px solid black' : '';
+    return props.color === props.selectedColor.colorName ? '1px solid black' : '';
   }};
   background-image: ${(props) => {
     return 'repeating-linear-gradient(150deg, transparent 0%, transparent 48%, black 50%, transparent 52%, transparent 100%)'
@@ -46,7 +46,8 @@ const RadioButton = styled.button`
   background: ${props => props.value};
   height: 1.5rem;
   width: 3rem;
-  margin: 2px;
+  margin: 1px;
+  padding: none;
 
   :hover {
     cursor: pointer;
@@ -57,8 +58,9 @@ const GreyedOutButton = styled.button`
   background: ${props => props.value};
   height: 1.5rem;
   width: 3rem;
-  margin: 2px;
+  margin: 1px;
   opacity: 0.5;
+  padding: none
 `;
 
 const RadioButtonLabel = styled.div`
