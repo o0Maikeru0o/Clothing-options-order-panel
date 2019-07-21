@@ -15,7 +15,6 @@ const FabricName = styled.div`
 const FabricDescription = styled.p`
   margin: 0;
   padding: 1rem;
-  // border-top: 1px solid rgba(0, 0, 0, .1);
 `;
 
 const FabricFeaturesContainer = styled.div`
@@ -29,7 +28,6 @@ const FabricFeaturesContainer = styled.div`
 const FabricFeature = styled.div`
   margin-right: 3rem;
   width: 50%
-  // padding: 3rem;
 `;
 
 const CareList = styled.ul`
@@ -59,14 +57,6 @@ const ItemFeatureName = styled.div`
   margin-right: 30%;
 `;
 
-const ItemFeatureDescription = styled.div`
-
-`;
-
-const placeholderDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-
-const placeholderFeatures = 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?';
-
 const AccordionTabContent = (props) => {
   //render different layout based on Tab Title
 
@@ -85,8 +75,6 @@ const AccordionTabContent = (props) => {
 
   } else if (props.tabTitle === 'Care') {
     return (
-      //Array of care instructions
-      //dynamically render each item as a component
       <CareList care={props.care}>
         {JSON.parse(props.care).map((item, index) => {
           return <CareItem key={index}>{item}</CareItem>
@@ -96,9 +84,6 @@ const AccordionTabContent = (props) => {
     )
   } else if (props.tabTitle === 'Features'){
     return (
-      //designedFor               -->     office/travel/commute
-      //Fabric                    -->     description (fabric)
-      //Fit (relaxed, hip length) -->     description (fit)
       <ItemFeaturesContainer>
         <ItemFeature>
           <ItemFeatureName>Designed For</ItemFeatureName>
@@ -107,9 +92,6 @@ const AccordionTabContent = (props) => {
         <ItemFeature>
           <ItemFeatureName>
             {props.features.fit.join(', ').toUpperCase()}
-          {/* {props.features.fit.map((fit) => {
-            return fit
-          })} */}
           </ItemFeatureName>
         </ItemFeature>
       </ItemFeaturesContainer>
