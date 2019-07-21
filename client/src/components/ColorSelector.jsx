@@ -33,7 +33,8 @@ const ColorSelector = (props) => {
       <ColorButtonContainer>
         {props.colors.map((color, index) => {
           return <ColorButton
-          key={index}
+          key={'color-id-' + index}
+          colors={props.colors}
           color={color.colorName}
           selectColor={props.selectColor}
           selectedColor={props.selectedColor}

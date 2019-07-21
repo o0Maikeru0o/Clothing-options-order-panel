@@ -10,9 +10,11 @@ const DropDownList = styled.ul`
   margin: 0px;
   position: relative;
   border: 1px solid rgba(0, 0, 0, .1);
+  border-top: none;
+  transition: height 1s linear;
   visibility: ${(props) => {
     return props.dropDownOpen ? 'visible' : 'hidden';
-  }}
+  }};
 `;
 
 const DropDownItem = styled.li`
@@ -49,7 +51,7 @@ const SizeDropDown = (props) => {
 }
 
 export default styled(SizeDropDown)`
-  // border: 2px solid green;
+  box-shadow: 0 4px 1px -1px rgba(0, 0, 0, .1);
   width: 100%;
 `;
 

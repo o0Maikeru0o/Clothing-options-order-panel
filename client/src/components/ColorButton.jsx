@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const RadioButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 12px;
+  margin-right: 1rem;
   padding: .055rem;
   border: ${(props) => {
     return props.color === props.selectedColor.colorName ? '1.3px solid black' : '';
@@ -29,34 +29,38 @@ const RadioButtonContainer = styled.div`
   }};
 `;
 
+const GreyedOutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  padding: .055rem;
+  border: ${(props) => {
+    return props.color === props.selectedColor.colorName ? '1px solid black' : '';
+  }};
+  background-image: ${(props) => {
+    return 'repeating-linear-gradient(150deg, transparent 0%, transparent 48%, black 50%, transparent 52%, transparent 100%)'
+  }};
+`;
+
 const RadioButton = styled.button`
   background: ${props => props.value};
   height: 1.5rem;
   width: 3rem;
-  margin: 2px;
-
-  opacity: ${(props) => {
-    if (props.selectedColor.sizes.length) {
-      let checkStock = (colorObj, size) => {
-        return colorObj.sizes.filter((sizeObj) => {return sizeObj.size == size})[0].stock;
-      };
-      let capitalizedColor = props.value.charAt(0).toUpperCase() + props.value.slice(1);
-
-      if (capitalizedColor === props.selectedColor.colorName) {
-        if (checkStock(props.selectedColor, props.selectedSize) === 0) {
-          return '0.5';
-        } else {
-          return '1';
-        }
-      }
-    } else {
-      return '1';
-    }
-  }};
+  margin: 1px;
+  padding: none;
 
   :hover {
     cursor: pointer;
   }
+`;
+
+const GreyedOutButton = styled.button`
+  background: ${props => props.value};
+  height: 1.5rem;
+  width: 3rem;
+  margin: 1px;
+  opacity: 0.5;
+  padding: none
 `;
 
 const RadioButtonLabel = styled.div`
@@ -68,17 +72,43 @@ const RadioButtonLabel = styled.div`
 `;
 
 const ColorButton = (props) => {
-  return (
-    <RadioButtonContainer selectedSize={props.selectedSize} selectedColor={props.selectedColor} color={props.color}>
-      <RadioButton
-      color={props.color}
-      value={props.color.toLowerCase()}
-      onClick={props.selectColor}
-      selectedColor={props.selectedColor}
-      selectedSize={props.selectedSize}
-      />
-    </RadioButtonContainer>
-  );
+
+  let checkStock = (colorObj, size) => {
+    return colorObj.sizes.filter((sizeObj) => { return sizeObj.size == size })[0].stock;
+  };
+  const findObjByColorName = (array, color) => {
+    return array.filter((colorObj) => { return colorObj.colorName === color})
+  }
+  const relatedObj = findObjByColorName(props.colors, props.color)[0];
+  const selectedSize = props.selectedSize
+
+  if (checkStock(relatedObj, props.selectedSize) === 0) {
+    return (
+      <GreyedOutContainer selectedSize={props.selectedSize} selectedColor={props.selectedColor} color={props.color}>
+        <GreyedOutButton
+        colors={props.colors}
+        color={props.color}
+        value={props.color.toLowerCase()}
+        onClick={props.selectColor}
+        selectedColor={props.selectedColor}
+        selectedSize={props.selectedSize}
+        />
+      </GreyedOutContainer>
+    );
+  } else {
+    return (
+      <RadioButtonContainer selectedSize={props.selectedSize} selectedColor={props.selectedColor} color={props.color}>
+        <RadioButton
+        colors={props.colors}
+        color={props.color}
+        value={props.color.toLowerCase()}
+        onClick={props.selectColor}
+        selectedColor={props.selectedColor}
+        selectedSize={props.selectedSize}
+        />
+      </RadioButtonContainer>
+    );
+  }
 };
 
 export default ColorButton;

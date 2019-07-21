@@ -43,7 +43,7 @@ const designedFor = ['Office', 'Travel', 'Commute'];
 const fit = ['Relaxed fit', 'Hip Length'];
 
 // colors: array of colors
-const colors = ['White', 'Black', 'Blue', 'Red', 'Green'];
+const colors = ['White', 'Black', 'Blue', 'Red', 'Green', 'Purple', 'Magenta', 'Cornflowerblue'];
 
 /** **************************************************************************** */
 // ///////////////////// Generate Items ////////////////////////////////////////
