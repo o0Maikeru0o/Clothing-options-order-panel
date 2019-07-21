@@ -39,10 +39,10 @@ const AddToCart = styled.button`
   height: 2rem;
   background: crimson;
   font-color: white;
-  padding: 1rem;
+  padding: 0px;
   text-align: center;
   color: white;
-  font-size: .7rem;
+  font-size: 1rem;
   font-weight: 400;
   margin-top: 2rem;
 `;
@@ -60,7 +60,7 @@ const ShippingMock = (props) => {
         <br></br>
       </ShippingButton>
       <div>Order before 5pm and pickup today.</div>
-      <AddToCart></AddToCart>
+      <AddToCart>Add to Cart</AddToCart>
     </ShippingContainer>
   );
 }
