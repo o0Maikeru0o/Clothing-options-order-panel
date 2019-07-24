@@ -6,7 +6,7 @@ const connection = mysql.createConnection(mysqlConfig);
 
 const getAllItems = () => {
   const q = 'SELECT * FROM items';
-  return new Promise ((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     connection.query(q, (err, results) => {
       if (err) {
         reject(err);
