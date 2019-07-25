@@ -29,7 +29,7 @@ Item.init({
   care: Sequelize.STRING,
   features: Sequelize.STRING,
   colors: Sequelize.STRING,
-  prize: Sequelize.STRING,
+  price: Sequelize.STRING,
 },
 // options
 {
