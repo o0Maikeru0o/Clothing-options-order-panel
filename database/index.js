@@ -24,7 +24,7 @@ Item.init({
     type: Sequelize.STRING,
     allowNull: false,
   },
-  description: Sequelize.STRING,
+  description: Sequelize.STRING(500),
   fabric: Sequelize.STRING,
   care: Sequelize.STRING,
   features: Sequelize.STRING,
