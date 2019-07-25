@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "react:dev": "webpack -d --watch",
+    "build": "webpack -d --watch",
     "reset-db": "mysql -u root < schema.sql",
     "seed": "node ./server/seed.js",
-    "start:dev": "nodemon server",
+    "start": "nodemon server",
     "test": "jest "
   },
   "repository": {
@@ -30,8 +30,11 @@
     "jquery": "^3.4.1",
     "mysql": "^2.17.1",
     "path": "^0.12.7",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "sequelize": "^5.10.2",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
