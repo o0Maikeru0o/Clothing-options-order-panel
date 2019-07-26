@@ -13,5 +13,5 @@ CREATE TABLE items (
   features varchar(280),
   colors varchar(5000),
   price varchar(15),
-  PRIMARY KEY (ID)
+  PRIMARY KEY (ID),
 );

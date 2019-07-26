@@ -1,72 +1,92 @@
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('postgres://localhost:5432/wawa_melon');
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-const { Model } = Sequelize;
-
-class Item extends Model {}
-Item.init({
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+const knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host: 'localhost',
+    user: 'maikeru',
+    password: 'SDCpostgres',
+    database: 'item_summary',
   },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  description: Sequelize.STRING,
-  fabric: Sequelize.STRING,
-  care: Sequelize.STRING,
-  features: Sequelize.STRING,
-  colors: Sequelize.STRING,
-  prize: Sequelize.STRING,
-},
-// options
-{
-  sequelize,
-  modelName: 'item',
 });
 
-const getAllItems = () => Item.findAll();
+knex.schema.createTable('items', (table) => {
+  table.increments();
+  table.string('name');
+  table.string('description', 500);
+  table.string('fabric');
+  table.string('care');
+  table.string('features');
+  table.string('colors');
+  table.string('price');
+})
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
 
-const getItemById = id => Item.findOne({ where: { id } })
-  .then(item => item)
-  .catch(err => console.log(err));
+// const getAllItems = () => Items.findAll();
 
-const getItemByName = name => Item.findOne({ where: { name } })
-  .then(item => item)
-  .catch(err => console.log(err));
+// const getItemById = id => Items.findOne({ where: { id } })
+//   .then(item => item)
+//   .catch(err => console.error(err));
+// // SELECT * FROM items WHERE Id = 2
 
-const createItem = item => Item.findOrCreate({ where: { name: item.name } })
-  .spread((newItem, created) => newItem)
-  .catch(err => console.log(err));
+// const getItemByName = name => Items.findOne({ where: { name } })
+//   .then(item => item)
+//   .catch(err => console.error(err));
+// // SELECT * FROM items WHERE name = name
 
-const updateItem = (id, params) => Item.Update({ params }, { where: { id } })
-  .then(updated => updated)
-  .catch(err => console.log(err));
+// const createItem = (item) => {
+//   const {
+//     name, description, fabric, care, features,
+//     colors, price,
+//   } = item;
+//   Items.findOrCreate({ where: { name } }, {
+//     defaults: {
+//       name,
+//       description,
+//       fabric,
+//       care,
+//       features,
+//       colors,
+//       price,
+//     },
+//   })
+//     .spread((newItem, created) => newItem)
+//     .catch(err => console.error(err));
+// };
+/*
+INSERT INTO items (name, description, fabric, care, features, colors, price,)
+VALUES
+   (
+      name,
+      description,
+      fabric,
+      care,
+      features,
+      colors,
+      price,
+   )
+ON CONFLICT ON CONSTRAINT name
+DO NOTHING; */
 
-const deleteItem = id => Item.destroy({ where: id })
-  .then(destroyed => destroyed)
-  .catch(err => console.log(err));
+// const updateItem = (id, params) => Item.Update({ params }, { where: { id } })
+//   .then(updated => updated)
+//   .catch(err => console.error(err));
+/* UPDATE items SET name = params.name description = params.description
+care = params.care fabric = params.fabric features = params.features
+colors = params.colors price = params.price WHERE id = id; */
 
-module.exports = {
-  getAllItems,
-  getItemById,
-  getItemByName,
-  createItem,
-  updateItem,
-  deleteItem,
-};
+// const deleteItem = id => Items.destroy({ where: id })
+//   .then(destroyed => destroyed)
+//   .catch(err => console.error(err));
+// DELETE FROM items WHERE id = id
+
+// module.exports = {
+//   getAllItems,
+//   getItemById,
+//   getItemByName,
+//   createItem,
+//   updateItem,
+//   deleteItem,
+// };
 
 // const mysql = require('mysql');
 // const Promise = require('bluebird');

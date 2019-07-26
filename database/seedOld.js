@@ -1,3 +1,4 @@
+const fs = require('fs');
 const db = require('../database/index.js');
 
 // //////////// Helper Functions //////////////////
@@ -38,9 +39,9 @@ const fabrics = [
 
 const care = ['Machine wash cold', 'Do not bleach', 'Tumble dry low', 'Do not iron', 'Do not dry clean', 'Imported', 'Wash with like colors'];
 
-const designedFor = ['Office', 'Travel', 'Commute'];
+const designedFor = ['Office', 'Travel', 'Commute', 'Exercise'];
 
-const fit = ['Relaxed fit', 'Hip Length'];
+const fit = ['Relaxed fit', 'Hip Length', 'Slim Fit'];
 
 // colors: array of colors
 const colors = ['White', 'Black', 'Blue', 'Red', 'Green', 'Purple', 'Magenta', 'Cornflowerblue'];
@@ -116,31 +117,37 @@ const generateNewItem = id => ({
 // ////////////////////// Seed Database //////////////////////////////////
 /** ******************************************************************** */
 
-const seed = () => {
-  return new Promise ((resolve, reject) => {
-    for (let i = 0; i < 100; i++) {
-      const item = generateNewItem(i);
-      const q = 'INSERT INTO items SET ?';
-      const post = {
-        name: item.name,
-        description: item.description,
-        fabric: JSON.stringify(item.fabric),
-        care: JSON.stringify(item.care),
-        features: JSON.stringify(item.features),
-        colors: JSON.stringify(item.colors),
-        price: item.price,
-      };
+const seed = () => new Promise((resolve, reject) => {
+  const data = [];
+  for (let i = 0; i < 1; i++) {
+    const item = generateNewItem(i);
+    // const q = 'INSERT INTO items SET ?';
+    const post = {
+      name: item.name,
+      description: item.description,
+      fabric: item.fabric,
+      care: item.care,
+      features: item.features,
+      colors: item.colors,
+      price: item.price,
+    };
 
-      db.connection.query(q, post, (err, results) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results);
-        }
-      });
+    data.push(JSON.stringify(post));
+    // db.connection.query(q, post, (err, results) => {
+    //   if (err) {
+    //     reject(err);
+    //   } else {
+    //     resolve(results);
+    //   }
+  }
+  fs.writeFile('itemData.json', data, 'utf8', (err, results) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(results);
     }
   });
-};
+});
 
 seed();
 
