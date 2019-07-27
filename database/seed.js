@@ -69,10 +69,10 @@ const seed = async () => {
   await knex.raw('TRUNCATE TABLE items RESTART IDENTITY CASCADE');
 
   let fakeItems = [];
-  for (let i = 1; i <= 100; i += 1) {
+  for (let i = 1; i <= 10000000; i += 1) {
     fakeItems.push(generateFakeItem());
     if (i % 25 === 0) {
-      completion += 25;
+      completion += 2500000;
       console.log(`${completion}% complete`);
     }
     if (i % 10 === 0) {
