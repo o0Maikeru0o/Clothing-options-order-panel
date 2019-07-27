@@ -75,7 +75,7 @@ const seed = async () => {
       completion += 25;
       console.log(`${completion}% complete`);
     }
-    if (i % 10 === 0) {
+    if (i % 10000 === 0) {
       await knex('items').insert(fakeItems);
       fakeItems = [];
     }
