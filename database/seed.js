@@ -71,8 +71,8 @@ const seed = async () => {
   let fakeItems = [];
   for (let i = 1; i <= 10000000; i += 1) {
     fakeItems.push(generateFakeItem());
-    if (i % 25 === 0) {
-      completion += 2500000;
+    if (i % 2500000 === 0) {
+      completion += 25;
       console.log(`${completion}% complete`);
     }
     if (i % 10 === 0) {
