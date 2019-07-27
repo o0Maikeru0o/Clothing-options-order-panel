@@ -14,7 +14,6 @@ app.get('/api/itemSummary/id/:id', (req, res) => {
   const { id } = req.params;
   db.readId(id)
     .then((results) => {
-      console.log('results', results);
       res.status(200).send(results);
     })
     .catch(err => res.status(400).json(err));
