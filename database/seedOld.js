@@ -148,10 +148,3 @@ const seed = () => new Promise((resolve, reject) => {
     }
   });
 });
-
-seed();
-
-module.exports = {
-  seed,
-  getNRandomElements,
-};

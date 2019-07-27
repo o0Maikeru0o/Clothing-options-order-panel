@@ -43,37 +43,48 @@ const colors = () => {
   } return colorOptions;
 };
 
-const generateFakeItem = () => ({
-  name: faker.commerce.productName(),
-  description: faker.lorem.sentences(),
-  fabric: {
-    fabricName: faker.commerce.productMaterial(),
-    fabricDescription: faker.lorem.sentence(),
-    fabricFeatures: selectHowManyFrom(3, null, faker.commerce.productAdjective),
-  },
-  care: selectHowManyFrom(3, care),
-  features: {
-    designedFor: selectHowManyFrom(2, designedFor),
-    fit: selectHowManyFrom(2, fit),
-  },
-  colors: colors(),
-  price: faker.commerce.price(5, 1000, 2, '$'),
-});
+const generateFakeItem = () => {
+  const item = {
+    name: faker.commerce.productName(),
+    description: faker.lorem.sentences(),
+    fabric: JSON.stringify({
+      fabricName: faker.commerce.productMaterial(),
+      fabricDescription: faker.lorem.sentence(),
+      fabricFeatures: selectHowManyFrom(3, null, faker.commerce.productAdjective),
+    }),
+    care: selectHowManyFrom(3, care),
+    features: JSON.stringify({
+      designedFor: selectHowManyFrom(2, designedFor),
+      fit: selectHowManyFrom(2, fit),
+    }),
+    colors: JSON.stringify(colors()),
+    price: faker.commerce.price(5, 1000, 2, '$'),
+  };
+  return item;
+};
 
 const seed = async () => {
-  await knex('items').del();
+  console.log('Seeding begun', `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
+  let completion = 0;
+  await knex.raw('TRUNCATE TABLE items RESTART IDENTITY CASCADE');
 
   let fakeItems = [];
-  for (let i = 1; i <= 10000; i += 1) {
+  for (let i = 1; i <= 100; i += 1) {
     fakeItems.push(generateFakeItem());
-
-    if (i % 1000 === 0) {
+    if (i % 25 === 0) {
+      completion += 25;
+      console.log(`${completion}% complete`);
+    }
+    if (i % 10 === 0) {
       await knex('items').insert(fakeItems);
       fakeItems = [];
     }
   }
+  console.log('Seeding complete', `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
 };
 seed();
+
+
 module.exports = {
   seed,
   generateFakeItem,

@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 import styled from 'styled-components';
 import NameAndPrice from './NameAndPrice.jsx';
 import Description from './Description.jsx';
@@ -8,6 +8,8 @@ import Accordion from './Accordions.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import ShippingMock from './ShippingMock.jsx';
 import {Main} from '../styling.jsx';
+
+const id = window.location.pathname;
 
 class ItemSummary extends React.Component {
   constructor(props) {
@@ -24,24 +26,29 @@ class ItemSummary extends React.Component {
   }
 
   componentDidMount() {
-    const id = window.location.pathname.substring(1)
     this.getItemById(id);
   }
 
-  getItemById(id) {
-    $.ajax({
-      url: `/api/itemSummary/${id}`,
-      method: 'GET',
-      success: (results) => {
-        this.setState({item: JSON.parse(results)});
-      },
-      error: () => console.log(`error sending GET to /api/itemSummary/${id} from client`)
-    })
+  async getItemById() {
+    await axios.get(`/api/itemSummary/id${id}`)
+      .then((results) => {
+        console.log('results', results);
+        this.setState({ item: results.data }, console.log('current state', this.state));
+      })
+      .catch(err => console.log(err));
+    // $.ajax({
+    //   url: `/api/itemSummary/${id}`,
+    //   method: 'GET',
+    //   success: (results) => {
+    //     this.setState({item: JSON.parse(results)});
+    //   },
+    //   error: () => console.log(`error sending GET to /api/itemSummary/${id} from client`)
+    // })
   }
 
   selectColor(event) {
     var capitalizedColor = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
-    var parsedColors = JSON.parse(this.state.item[0].colors);
+    var parsedColors = this.state.item[0].colors;
     var matchingColorObj = parsedColors.find(color => color.colorName === capitalizedColor);
 
     this.setState({ selectedColor: matchingColorObj });
@@ -71,7 +78,7 @@ class ItemSummary extends React.Component {
           description={item.length ? item[0].description : null}
         />
         <ColorSelector
-          colors={item.length ? JSON.parse(item[0].colors) : []}
+          colors={item.length ? item[0].colors : []}
           selectColor={this.selectColor}
           selectedColor={this.state.selectedColor}
           selectedSize={this.state.selectedSize}
@@ -86,9 +93,9 @@ class ItemSummary extends React.Component {
         />
         <ShippingMock />
         <Accordion
-          fabric={item.length ? JSON.parse(item[0].fabric) : 'test'}
+          fabric={item.length ? item[0].fabric : 'test'}
           care={item.length ? item[0].care : []}
-          features={item.length ? JSON.parse(item[0].features) : {}}
+          features={item.length ? item[0].features : {}}
         />
       </Main>
     )
