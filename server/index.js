@@ -10,12 +10,50 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-app.get('/api/itemSummary/:id', (req, res) => {
+app.get('/api/itemSummary/id/:id', (req, res) => {
   const { id } = req.params;
-  // console.log(req.params);
-  db.getSingleItem(id)
+  db.readId(id)
     .then((results) => {
-      res.end(JSON.stringify(results));
+      res.status(200).send(results);
     })
-    .catch(err => console.log('Promise rejection error ', err));
+    .catch(err => res.status(400).json(err));
+});
+
+// app.get('/api/itemSummary/name/:name', (req, res) => {
+//   const { name } = req.params;
+
+//   db.readName(name)
+//     .then((results) => {
+//       res.status(200).send(results);
+//     })
+//     .catch(err => res.status(400).json(err));
+// });
+
+app.post('/api/itemSummary/:id', (req, res) => {
+  const { id } = req.params;
+  const newItem = req.body;
+  db.create(id, newItem)
+    .then((results) => {
+      res.status(201).send(results);
+    })
+    .catch(err => res.status(400).json(err));
+});
+
+app.put('/api/itemSummary/:id', (req, res) => {
+  const { id } = req.params;
+  const revision = req.body;
+  db.update(id, revision)
+    .then((results) => {
+      res.status(202).send(results);
+    })
+    .catch(err => res.status(400).json(err));
+});
+
+app.delete('/api/itemSummary/:id', (req, res) => {
+  const { id } = req.params;
+  db.delete(id)
+    .then((results) => {
+      res.status(202).send(results);
+    })
+    .catch(err => res.status(400).json(err));
 });

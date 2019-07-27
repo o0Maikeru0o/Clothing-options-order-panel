@@ -1,115 +1,51 @@
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('postgres://localhost:5432/wawa_melon');
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-const { Model } = Sequelize;
-
-class Item extends Model {}
-Item.init({
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+const knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host: 'localhost',
+    user: 'maikeru',
+    password: 'SDCpostgres',
+    database: 'item_summary',
   },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  description: Sequelize.STRING(500),
-  fabric: Sequelize.STRING,
-  care: Sequelize.STRING,
-  features: Sequelize.STRING,
-  colors: Sequelize.STRING,
-  price: Sequelize.STRING,
-},
-// options
-{
-  sequelize,
-  modelName: 'item',
 });
 
-const getAllItems = () => Item.findAll();
+knex.schema.hasTable('items').then((exists) => {
+  if (!exists) {
+    knex.schema.createTable('items', (table) => {
+      table.increments();
+      table.string('name');
+      table.string('description', 500);
+      table.json('fabric');
+      table.specificType('care', 'text ARRAY');
+      table.json('features');
+      table.json('colors');
+      table.string('price');
+    });
+  }
+}).catch(err => console.error(err));
 
-const getItemById = id => Item.findOne({ where: { id } })
-  .then(item => item)
-  .catch(err => console.log(err));
+const getItemById = id => knex.select().table('items').where({ id });
+// SELECT * FROM items WHERE Id = Id
 
-const getItemByName = name => Item.findOne({ where: { name } })
-  .then(item => item)
-  .catch(err => console.log(err));
+const getItemByName = name => knex.select().table('items').where({ name });
+// SELECT * FROM items WHERE name = name
 
-const createItem = item => Item.findOrCreate({ where: { name: item.name } })
-  .spread((newItem, created) => newItem)
-  .catch(err => console.log(err));
+const createItem = newItem => knex('items').insert(newItem);
+// INSERT INTO items (name, description, fabric, care, features, colors, price,)
+// VALUES( name, description, fabric, care, features,colors,price)
 
-const updateItem = (id, params) => Item.Update({ params }, { where: { id } })
-  .then(updated => updated)
-  .catch(err => console.log(err));
+const updateItem = (id, revision) => knex('items').where({ id }).update(revision);
+/* UPDATE items SET name = params.name description = params.description
+care = params.care fabric = params.fabric features = params.features
+colors = params.colors price = params.price WHERE id = id; */
 
-const deleteItem = id => Item.destroy({ where: id })
-  .then(destroyed => destroyed)
-  .catch(err => console.log(err));
+const deleteItem = id => knex('items').where({ id }).del();
+// DELETE FROM items WHERE id = id
+
 
 module.exports = {
-  getAllItems,
-  getItemById,
-  getItemByName,
-  createItem,
-  updateItem,
-  deleteItem,
+  readId: getItemById,
+  readName: getItemByName,
+  create: createItem,
+  update: updateItem,
+  delete: deleteItem,
 };
-
-// const mysql = require('mysql');
-// const Promise = require('bluebird');
-// const mysqlConfig = require('./config.js');
-
-// const connection = mysql.createConnection(mysqlConfig);
-
-// const getAllItems = () => {
-//   const q = 'SELECT * FROM items';
-//   return new Promise((resolve, reject) => {
-//     connection.query(q, (err, results) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         resolve(results);
-//       }
-//     });
-//   });
-// };
-
-// const getSingleItem = (id) => {
-//   const q = 'SELECT * FROM items WHERE id=?';
-//   const product_id = id;
-//   return new Promise((resolve, reject) => {
-//     connection.query(q, product_id, (err, results) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         resolve(results);
-//       }
-//     });
-//   });
-// };
-
-// const clearTable = () => {
-//   const q = 'TRUNCATE TABLE items';
-//   return new Promise((resolve, reject) => {
-//     connection.query(q, (err, results) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         resolve(results);
-//       }
-//     });
-//   });
-// };
