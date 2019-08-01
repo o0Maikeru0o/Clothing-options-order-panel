@@ -41,7 +41,6 @@ class Accordion extends React.Component {
         content: 'this is where features goes',
       }
     ];
-
     return (
       <AccordionContainer>
         {tabs.map((tab, index) => {
