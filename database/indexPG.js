@@ -3,7 +3,7 @@ const knex = require('knex')({
   connection: {
     host: 'localhost',
     user: 'maikeru',
-    password: 'SDCpostgres',
+    password: 'postgres',
     database: 'item_summary',
   },
 });
@@ -11,15 +11,15 @@ const knex = require('knex')({
 knex.schema.hasTable('items').then((exists) => {
   if (!exists) {
     knex.schema.createTable('items', (table) => {
-      table.increments();
+      table.increments('id');
       table.string('name');
       table.string('description', 500);
       table.json('fabric');
-      table.specificType('care', 'text ARRAY');
+      table.json('care');
       table.json('features');
       table.json('colors');
       table.string('price');
-    });
+    }).then(console.log('items table created'));
   }
 }).catch(err => console.error(err));
 

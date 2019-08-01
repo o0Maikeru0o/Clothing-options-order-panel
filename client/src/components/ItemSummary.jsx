@@ -29,28 +29,18 @@ class ItemSummary extends React.Component {
     this.getItemById(id);
   }
 
-  async getItemById() {
-    await axios.get(`/api/itemSummary/id${id}`)
+ getItemById(id) {
+    axios.get(`/api/itemSummary/id${id}`)
       .then((results) => {
-        console.log('results', results);
-        this.setState({ item: results.data }, console.log('current state', this.state));
+        console.log(results)
+      this.setState({ item: [results.data] });
       })
       .catch(err => console.log(err));
-    // $.ajax({
-    //   url: `/api/itemSummary/${id}`,
-    //   method: 'GET',
-    //   success: (results) => {
-    //     this.setState({item: JSON.parse(results)});
-    //   },
-    //   error: () => console.log(`error sending GET to /api/itemSummary/${id} from client`)
-    // })
   }
 
   selectColor(event) {
     var capitalizedColor = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
-    var parsedColors = this.state.item[0].colors;
-    var matchingColorObj = parsedColors.find(color => color.colorName === capitalizedColor);
-
+    var matchingColorObj = this.state.item[0].colors.find(color => color.colorName === capitalizedColor);
     this.setState({ selectedColor: matchingColorObj });
   }
 
@@ -68,6 +58,7 @@ class ItemSummary extends React.Component {
 
   render() {
     var item = this.state.item;
+
     return (
       <Main>
         <NameAndPrice

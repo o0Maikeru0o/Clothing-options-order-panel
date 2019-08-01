@@ -69,7 +69,6 @@ const placeholderFeatures = 'Ut enim ad minima veniam, quis nostrum exercitation
 
 const AccordionTabContent = (props) => {
   //render different layout based on Tab Title
-
   if (props.tabTitle === 'Fabric') {
     return (
       <FabricContentContainer>
@@ -88,7 +87,7 @@ const AccordionTabContent = (props) => {
       //Array of care instructions
       //dynamically render each item as a component
       <CareList care={props.care}>
-        {JSON.parse(props.care).map((item, index) => {
+        {props.care.map((item, index) => {
           return <CareItem key={index}>{item}</CareItem>
         })}
         <CareItem> (╯°□°)╯︵ ┻━┻</CareItem>
