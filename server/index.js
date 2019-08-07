@@ -66,7 +66,7 @@ app.get('/api/itemSummary/:id', (req, res) => {
 // app.get('/api/itemSummary/routing/:id/:routing', (req, res) => {
 //   const { id, routing } = req.params;
 //   client.get({
-//     index: 'clothes',
+//     index: 'clothing',
 //     type: '_doc',
 //     id,
 //     routing,
@@ -93,14 +93,14 @@ app.post('/api/itemSummary/:id', (req, res) => {
 app.put('/api/itemSummary/:id', (req, res) => {
   const { id } = req.params;
   const { body } = req;
-  client.updateByQuery({ index: 'clothes', q: id, body }, (error, response) => {
+  client.updateByQuery({ index: 'clothing', q: id, body }, (error, response) => {
     if (error) { res.status(400).send(error); } else { res.status(202).send(response.body.result); }
   });
 });
 
 app.delete('/api/itemSummary/:id', (req, res) => {
   const { id } = req.params;
-  client.deleteByQuery({ index: 'clothes', q: { id } }, (error, response) => {
+  client.deleteByQuery({ index: 'clothing', q: { id } }, (error, response) => {
     if (error) { res.status(400).send(error); } else { res.status(204).send(response.body.result); }
   });
 });
