@@ -39,31 +39,28 @@ const AddToCart = styled.button`
   height: 2rem;
   background: crimson;
   font-color: white;
-  padding: 1rem;
   text-align: center;
   color: white;
-  font-size: .7rem;
+  font-size: 1rem;
   font-weight: 400;
   margin-top: 2rem;
 `;
 
-const ShippingMock = (props) => {
-  return (
-    <ShippingContainer >
-      <ShippingButton >
-        <SelectButton />
-        <SelectLabel>Ship</SelectLabel>
-      </ShippingButton>
-      <ShippingButton >
-        <SelectButton />
-        <SelectLabel>Pickup in store</SelectLabel>
-        <br></br>
-      </ShippingButton>
-      <div>Order before 5pm and pickup today.</div>
-      <AddToCart></AddToCart>
-    </ShippingContainer>
-  );
-}
+const ShippingMock = props => (
+  <ShippingContainer>
+    <ShippingButton>
+      <SelectButton />
+      <SelectLabel>Ship</SelectLabel>
+    </ShippingButton>
+    <ShippingButton>
+      <SelectButton />
+      <SelectLabel>Pickup in store</SelectLabel>
+      <br />
+    </ShippingButton>
+    <div>Order before 5pm and pickup today.</div>
+    <AddToCart>Add to cart</AddToCart>
+  </ShippingContainer>
+);
 
 export default styled(ShippingMock)`
   margin-down: 1rem;

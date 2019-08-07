@@ -7,16 +7,16 @@ import ColorSelector from './ColorSelector.jsx';
 import Accordion from './Accordions.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import ShippingMock from './ShippingMock.jsx';
-import {Main} from '../styling.jsx';
+import { Main } from '../styling.jsx';
 
-const id = window.location.pathname;
+const id = window.location.pathname.slice(1).replace(/\/+$/, '');
 
 class ItemSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       item: [],
-      selectedColor: {colorName: 'Select Color', sizes: []},
+      selectedColor: { colorName: 'Select Color', sizes: [] },
       selectedSize: '0',
       dropDownOpen: false,
     };
@@ -25,22 +25,23 @@ class ItemSummary extends React.Component {
     this.toggleDropDown = this.toggleDropDown.bind(this);
   }
 
-  componentDidMount() {
-    this.getItemById(id);
+  async componentDidMount() {
+    await this.getItemById();
   }
 
- getItemById(id) {
-    axios.get(`/api/itemSummary/id${id}`)
+  getItemById() {
+    const padded = id.toString().padStart(9, '0');
+    axios.get(`/api/itemSummary/id/${padded}`)
       .then((results) => {
-        console.log(results)
-      this.setState({ item: [results.data] });
+        console.log(results.data);
+        this.setState({ item: [results.data] });
       })
       .catch(err => console.log(err));
   }
 
   selectColor(event) {
-    var capitalizedColor = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
-    var matchingColorObj = this.state.item[0].colors.find(color => color.colorName === capitalizedColor);
+    const capitalizedColor = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
+    const matchingColorObj = this.state.item[0].colors.find(color => color.colorName === capitalizedColor);
     this.setState({ selectedColor: matchingColorObj });
   }
 
@@ -48,16 +49,16 @@ class ItemSummary extends React.Component {
     this.setState({
       selectedSize: event.target.value,
       dropDownOpen: false,
-    })
-    console.log(this.state.selectedColor)
+    });
+    console.log(this.state.selectedColor);
   }
 
   toggleDropDown() {
-    this.setState({ dropDownOpen: !this.state.dropDownOpen})
+    this.setState({ dropDownOpen: !this.state.dropDownOpen });
   }
 
   render() {
-    var item = this.state.item;
+    const { item } = this.state;
 
     return (
       <Main>
@@ -89,8 +90,8 @@ class ItemSummary extends React.Component {
           features={item.length ? item[0].features : {}}
         />
       </Main>
-    )
+    );
   }
-};
+}
 
 export default ItemSummary;

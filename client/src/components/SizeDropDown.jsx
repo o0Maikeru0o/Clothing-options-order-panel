@@ -12,9 +12,7 @@ const DropDownList = styled.ul`
   border: 1px solid rgba(0, 0, 0, .1);
   border-top: none;
   transition: height 1s linear;
-  visibility: ${(props) => {
-    return props.dropDownOpen ? 'visible' : 'hidden';
-  }};
+  visibility: ${props => (props.dropDownOpen ? 'visible' : 'hidden')};
 `;
 
 const DropDownItem = styled.li`
@@ -33,22 +31,24 @@ const DropDownItem = styled.li`
   }
 `;
 
-const SizeDropDown = (props) => {
-  return (
-    <div className={props.className}>
-      <DropDownHeader selectedSize={props.selectedSize} selectedColor={props.selectedColor} toggleDropDown={props.toggleDropDown}/>
-      <DropDownList dropDownOpen={props.dropDownOpen}>
-        {props.sizes.map((size) => {
-          if (size.stock === 0) {
-            return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}(sold out online)</DropDownItem>
-          } else {
-            return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}</DropDownItem>
-          }
-        })}
-      </DropDownList>
-    </div>
-  );
-}
+const SizeDropDown = props => (
+  <div className={props.className}>
+    <DropDownHeader selectedSize={props.selectedSize} selectedColor={props.selectedColor} toggleDropDown={props.toggleDropDown} />
+    <DropDownList dropDownOpen={props.dropDownOpen}>
+      {props.sizes.map((size) => {
+        if (size.stock === 0) {
+          return (
+            <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>
+              {size.size}
+(sold out online)
+            </DropDownItem>
+          );
+        }
+        return <DropDownItem key={size.size} value={size.size} onClick={props.handleDropDownSubmit}>{size.size}</DropDownItem>;
+      })}
+    </DropDownList>
+  </div>
+);
 
 export default styled(SizeDropDown)`
   box-shadow: 0 4px 1px -1px rgba(0, 0, 0, .1);

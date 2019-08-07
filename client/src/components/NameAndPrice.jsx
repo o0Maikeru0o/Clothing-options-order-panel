@@ -23,18 +23,16 @@ const CurrencyTag = styled.div`
   padding: .75% 1% 0px;
 `;
 
-const NameAndPrice = (props) => {
-  return (
-    <NamePriceContainer>
-      <ItemName>{props.name}</ItemName>
-      <br></br>
-      <ItemPrice>
-        {props.price}
-        <CurrencyTag>USD</CurrencyTag>
-      </ItemPrice>
+const NameAndPrice = props => (
+  <NamePriceContainer>
+    <ItemName>{props.name}</ItemName>
+    <br />
+    <ItemPrice>
+      {props.price}
+      <CurrencyTag>USD</CurrencyTag>
+    </ItemPrice>
 
-    </NamePriceContainer>
-  )
-};
+  </NamePriceContainer>
+);
 
 export default NameAndPrice;
