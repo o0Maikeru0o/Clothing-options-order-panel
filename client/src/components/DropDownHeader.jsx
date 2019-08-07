@@ -12,18 +12,15 @@ const DropDownLabel = styled.div`
   margin-left: 20px;
 `;
 
-const DropDownHeader = (props) => {
-  return (
-    <div
-    onClick={props.toggleDropDown}
-    className={props.className}
-    >
-      <DropDownLabel>Size</DropDownLabel>
-
-      <SelectedSize>{props.selectedSize} ▽ </SelectedSize>
-    </div>
-  );
-};
+const DropDownHeader = props => (
+  <div onClick={props.toggleDropDown} className={props.className}>
+    <DropDownLabel>Size</DropDownLabel>
+    <SelectedSize>
+      {props.selectedSize}
+▽
+    </SelectedSize>
+  </div>
+);
 
 export default styled(DropDownHeader)`
   // border: 2px solid red;
