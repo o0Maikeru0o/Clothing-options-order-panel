@@ -21,17 +21,17 @@ const body = {
 };
 
 // export default function () {
-//   const res = http.get(`http://localhost:3002/api/itemSummary/id/${getRandomId()}/`);
+//   const res = http.get(`http://localhost:3002/api/itemSummary/${getRandomId()}/`);
 //   check(res, {
 //     'status is 200': r => r.status === 200,
 //   });
 //   sleep(1);
 // }
 
-export default function () {
-  const res = http.post('http://localhost:3002/api/itemSummary/', body);
-  check(res, {
-    'status is 201': r => r.status === 201,
-  });
-  sleep(1);
-}
+// export default function () {
+//   const res = http.post('`http://localhost:3002/api/itemSummary/${getRandomId()}/`, body);
+//   check(res, {
+//     'status is 201': r => r.status === 201,
+//   });
+//   sleep(1);
+// }

@@ -52,7 +52,7 @@ app.listen(PORT, () => {
 
 
 // REST api
-app.get('/api/itemSummary/id/:id', (req, res) => {
+app.get('/api/itemSummary/:id', (req, res) => {
   const { id } = req.params;
   client.search({
     index: 'clothing',
@@ -63,24 +63,15 @@ app.get('/api/itemSummary/id/:id', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-app.get('/api/itemSummary/routing/:id/:routing', (req, res) => {
-  const { id, routing } = req.params;
-  client.get({
-    index: 'clothes',
-    type: '_doc',
-    id,
-    routing,
-  }, (error, response) => { if (error) { res.send(error); } else { res.send(response.body._source); } });
-});
-
-app.get('/api/itemSummary/routingSearch/:routing', (req, res) => {
-  const { routing } = req.params;
-  console.log('routing', routing);
-  const query = { query: { term: { _routing: [routing] } } };
-  axios.post('http://localhost:9200/clothes/_doc/_search', { body: query })
-    .then(results => res.send(results))
-    .catch(err => res.status(400).send(err));
-});
+// app.get('/api/itemSummary/routing/:id/:routing', (req, res) => {
+//   const { id, routing } = req.params;
+//   client.get({
+//     index: 'clothes',
+//     type: '_doc',
+//     id,
+//     routing,
+//   }, (error, response) => { if (error) { res.send(error); } else { res.send(response.body._source); } });
+// });
 
 app.get('/api/itemSummary/name/:name', (req, res) => {
   const { name } = req.params;
@@ -91,7 +82,7 @@ app.get('/api/itemSummary/name/:name', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-app.post('/api/itemSummary/', (req, res) => {
+app.post('/api/itemSummary/:id', (req, res) => {
   const { body } = req;
   console.log(body);
   client.index({ index: 'clothing', body }, (error, response) => {

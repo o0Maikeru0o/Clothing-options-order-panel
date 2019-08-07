@@ -9,7 +9,7 @@ import SizeSelector from './SizeSelector.jsx';
 import ShippingMock from './ShippingMock.jsx';
 import { Main } from '../styling.jsx';
 
-const id = window.location.pathname.slice(1).replace(/\/+$/, '');
+const id = window.location.pathname;
 
 class ItemSummary extends React.Component {
   constructor(props) {
@@ -25,23 +25,24 @@ class ItemSummary extends React.Component {
     this.toggleDropDown = this.toggleDropDown.bind(this);
   }
 
-  async componentDidMount() {
-    await this.getItemById();
+  componentDidMount() {
+    this.getItemById();
   }
 
   getItemById() {
-    const padded = id.toString().padStart(9, '0');
-    axios.get(`/api/itemSummary/id/${padded}`)
+    axios.get(`/api/itemSummary${id}`)
       .then((results) => {
-        console.log(results.data);
         this.setState({ item: [results.data] });
       })
       .catch(err => console.log(err));
   }
 
   selectColor(event) {
-    const capitalizedColor = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
-    const matchingColorObj = this.state.item[0].colors.find(color => color.colorName === capitalizedColor);
+    const capitalizedColor = event.target.value.charAt(0).toUpperCase()
+    + event.target.value.slice(1);
+    const matchingColorObj = this.state.item[0].colors.find(
+      color => color.colorName === capitalizedColor,
+    );
     this.setState({ selectedColor: matchingColorObj });
   }
 

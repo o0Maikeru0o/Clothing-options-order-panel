@@ -17,9 +17,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fec3-galadriel/matt-item-summary/issues"
+    "url": "https://github.com/sdc3-pele/item-summary/issues"
   },
-  "homepage": "https://github.com/fec3-galadriel/matt-item-summary#readme",
+  "homepage": "https://github.com/sdc3-pele/item-summary#readme",
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@elastic/elasticsearch": "^7.2.0",
