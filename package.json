@@ -62,7 +62,7 @@
     "nodemon": "^1.19.1",
     "sinon": "^7.3.2",
     "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.12"
   },
   "jest": {
     "setupFilesAfterEnv": [
