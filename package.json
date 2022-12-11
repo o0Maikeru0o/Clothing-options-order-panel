@@ -31,7 +31,7 @@
     "elastic-apm-node": "^2.13.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "json2csv": "^4.5.2",
     "k6": "0.0.0",
